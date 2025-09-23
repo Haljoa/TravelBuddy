@@ -1,9 +1,9 @@
 package Main;
 
 public class Mainclass {
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
 
-        System.out.println("Main");
+            System.out.println("This is the main class");
 
     }
 }
