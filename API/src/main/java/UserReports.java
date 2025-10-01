@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class UserReports {
 
     private String Report;
@@ -33,4 +35,20 @@ public class UserReports {
     public void setReportDescription(String reportDescription) {
         ReportDescription = reportDescription;
     }
+
+    public static UserReports Reporter() {
+        Scanner Reporter = new Scanner(System.in);
+
+        System.out.println("Hva rapporterer du");
+        String report = Reporter.nextLine();
+
+        System.out.println("Hva slags type problem er det");
+        int reportID = Reporter.nextInt();
+
+        System.out.println("Forklar problemet");
+        String reportDescription = Reporter.nextLine();
+
+        return new UserReports(report, reportID, reportDescription);
+    }
+
 }

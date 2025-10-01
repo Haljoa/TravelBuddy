@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-
-
 class FraogTilInput {
     private int fra;
     private int til;
@@ -28,6 +26,7 @@ class FraogTilInput {
         fra = Frastopp.nextInt();
         return fra;
     }
+
     public static int Tilstopp(int til)  {
 
         Scanner Tilstopp = new Scanner(System.in);
