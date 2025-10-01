@@ -1,5 +1,6 @@
 import java.util.Scanner;
-package org.travel;
+
+
 
 class FraogTilInput {
     private int fra;
