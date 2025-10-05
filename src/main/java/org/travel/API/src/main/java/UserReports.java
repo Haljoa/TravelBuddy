@@ -1,3 +1,5 @@
+package main.java.org.travel.API.src.main.java;
+
 import java.util.Scanner;
 
 public class UserReports {

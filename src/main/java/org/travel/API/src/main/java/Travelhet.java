@@ -1,4 +1,8 @@
+package main.java.org.travel.API.src.main.java;
+
 import java.util.Scanner;
+
+//Vi må kanskje splitte denne opp, og flytte noen biter til andre steder i systemet.
 
 public class Travelhet {
     private String transportmiddel;
@@ -36,16 +40,15 @@ public class Travelhet {
             System.out.println("Ugyldig input! Skriv inn et heltall");
         }
     }
-    private void beregnTravelhet(){
+    private double beregnTravelhet(){
         if (maksKapasitet == 0) {
             travelhetsNiva = 0.0;
-            return;
         }
-
         travelhetsNiva = (double) antallPassasjerer / maksKapasitet * 100;
+        return travelhetsNiva;
     }
     public void visTravelhet(){
-        System.out.println("\n--- Travelhetsrapport ---")
+        System.out.println("\n--- Travelhetsrapport ---");
         System.out.println("Transportmiddel: " + transportmiddel);
         System.out.println("Maks kapasitet: " + maksKapasitet);
         System.out.println("Antall passasjerer: " + antallPassasjerer);
@@ -90,8 +93,4 @@ public class Travelhet {
         return travelhetsNiva;
     }
 
-    //MAIN FOR TESTING
-    public static void main(String[] args){
-
-    }
 }
