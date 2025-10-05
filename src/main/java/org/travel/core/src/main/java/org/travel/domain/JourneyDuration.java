@@ -2,16 +2,19 @@ package org.travel.domain;
 
 public class JourneyDuration {
 
+    private int journeyId;
     private int from;
     private int to;
     private int durationInMinutes;
 
-    public JourneyDuration(int from, int to, int durationInMinutes) {
+    public JourneyDuration(int journeyId, int from, int to, int durationInMinutes) {
+        this.journeyId = journeyId;
         this.from = from;
         this.to = to;
         this.durationInMinutes = durationInMinutes;
     }
 
+    public int getJourneyId() {return journeyId;}
     public int getFrom() {return from;}
     public int getTo() {return to;}
     public int getDurationInMinutes() {return durationInMinutes;}
