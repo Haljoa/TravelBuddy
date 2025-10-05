@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>core</module>
-        <module>DataFormatter</module>
+        <module>Ports</module>
         <module>API</module>
     </modules>
 
