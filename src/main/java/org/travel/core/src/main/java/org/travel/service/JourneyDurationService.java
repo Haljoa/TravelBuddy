@@ -6,15 +6,15 @@ import java.util.HashMap;
 public class JourneyDurationService {
     private HashMap<Integer, JourneyDuration> journey = new HashMap();
 
-    public void setJourneyDuration(int journeyId, int from, int to, int durationInMinutes) {
-        JourneyDuration journeyDuration = journey.get(journeyId);
+    public void setJourneyDuration(int routeId, int from, int to, int durationInMinutes) {
+        JourneyDuration journeyDuration = journey.get(routeId);
 
         journeyDuration.setDurationInMinutes(durationInMinutes);
 
-        journey.put(journeyId, journeyDuration);
+        journey.put(routeId, journeyDuration);
     }
 
-    public JourneyDuration getJourney(int journeyId) {
-        return journey.get(journeyId);
+    public JourneyDuration getJourney(int routeId) {
+        return journey.get(routeId);
     }
 }
