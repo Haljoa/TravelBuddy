@@ -1,4 +1,4 @@
-package main.java.org.travel.core.src.main.java.org.travel.domain;
+package main.java.org.travel.core.domain;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ public class TripData {
     private int routeId;
     private int totalRouteDuration;
     private List<Integer> durationsBetweenStops;
-    private int crowdednessLevel; //
+    private double crowdednessLevel; //
     private String deviations;
 
     //Jackson trenger en tom konstruktør
     public TripData() {}
 
     public TripData(int routeId, int totalRouteDuration, List<Integer> durationsBetweenStops,
-                    int crowdednessLevel, String deviations) {
+                    double crowdednessLevel, String deviations) {
         this.routeId = routeId;
         this.totalRouteDuration = totalRouteDuration;
         this.durationsBetweenStops = durationsBetweenStops;
@@ -24,7 +24,7 @@ public class TripData {
     public int getRouteId() {return routeId;}
     public int getTotalRouteDuration() {return totalRouteDuration;}
     public List<Integer> getDurationsBetweenStops() {return durationsBetweenStops;}
-    public int getCrowdednessLevel() {return crowdednessLevel;}
+    public double getCrowdednessLevel() {return crowdednessLevel;}
     public String getDeviations() {return deviations;}
 
     public void setRouteId(int routeId) {this.routeId = routeId;}

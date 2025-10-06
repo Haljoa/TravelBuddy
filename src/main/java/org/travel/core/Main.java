@@ -1,7 +1,7 @@
-package main.java.org.travel.core.src.main.java.org.travel;
+package main.java.org.travel.core;
 
-import main.java.org.travel.core.src.main.java.org.travel.domain.Route;
-import main.java.org.travel.core.src.main.java.org.travel.service.RouteService;
+import main.java.org.travel.core.domain.Route;
+import main.java.org.travel.core.service.RouteService;
 
 import java.util.List;
 import java.util.Scanner;

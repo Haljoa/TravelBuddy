@@ -1,4 +1,4 @@
-package main.java.org.travel.core.src.main.java.org.travel.domain;
+package main.java.org.travel.core.domain;
 
 import java.util.List;
 
