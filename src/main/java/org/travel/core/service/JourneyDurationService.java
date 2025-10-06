@@ -1,6 +1,6 @@
-package main.java.org.travel.core.src.main.java.org.travel.service;
+package main.java.org.travel.core.service;
 
-import main.java.org.travel.core.src.main.java.org.travel.domain.JourneyDuration;
+import main.java.org.travel.core.domain.JourneyDuration;
 import java.util.HashMap;
 
 public class JourneyDurationService {

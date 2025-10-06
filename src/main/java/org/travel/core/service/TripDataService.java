@@ -1,8 +1,8 @@
-package main.java.org.travel.core.src.main.java.org.travel.service;
+package main.java.org.travel.core.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import main.java.org.travel.core.src.main.java.org.travel.domain.TripData;
+import main.java.org.travel.core.domain.TripData;
 
 import java.io.File;
 import java.io.IOException;
