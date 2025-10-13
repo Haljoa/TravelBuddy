@@ -1,4 +1,4 @@
-package main.java.org.travel.API.src.main.java;
+package main.java.org.travel.API;
 
 import java.util.Scanner;
 
