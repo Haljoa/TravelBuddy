@@ -15,8 +15,8 @@ import main.java.org.travel.core.service.JourneyDurationService;
 // TODO: etter vi har en måte å finne travelhet på, legg det til i denne klassen
 
 public class RuteVanskelighet {
-    private int VanskelighetsGradLengde;
-    private int VanskelighetsGradStopp;
+    private int VanskelighetsGradLengde = 0;
+    private int VanskelighetsGradStopp = 0;
     private int VanskelighetsGradTravelhet = 0; // Ubrukt for nå, i testing bør denne alltid være 0
 
 
