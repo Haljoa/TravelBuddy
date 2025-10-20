@@ -4,7 +4,7 @@ import main.java.org.travel.core.domain.Route;
 import main.java.org.travel.core.domain.JourneyDuration;
 import main.java.org.travel.core.service.JourneyDurationService;
 
-// Ser over en valgt rute og gir den en vanskeilighetsgrad fra 1 - 10 i kategoriene lengde, stoppmengde og travelhet
+// Ser over en valgt rute og gir den en vanskeilighetsgrad fra 0 - 10 i kategoriene lengde, stoppmengde og travelhet
 // 1 i lengde er en rute som har tar mindre enn 2 minutter fra start til slutt
 // 19 i lengde er en rute som tar mer enn 2 timer fra start til slutt
 // 1 i stoppmengde er en rute som har mindre enn 3 stopp fra start til slutt
@@ -30,12 +30,23 @@ public class RuteVanskelighet {
 
         }
         */
-
-        for (int stop = 0; stop < route.getStops().size(); stop++) {
-            VanskelighetsGradStopp++;
+        // skal gå igjennom listen med stop i ruten og sette vanskelighetsgraden for stopp ut ifra hvor mange det er
+        if (route.getStops().isEmpty()) {
+            System.err.println("Error, invalid amount of stops");
+            return -1;
         }
+        else if (route.getStops().size() <= 3) VanskelighetsGradStopp = 0;
+        else if (route.getStops().size() <= 6) VanskelighetsGradStopp = 1;
+        else if (route.getStops().size() <= 9) VanskelighetsGradStopp = 2;
+        else if (route.getStops().size() <= 12) VanskelighetsGradStopp = 3;
+        else if (route.getStops().size() <= 15) VanskelighetsGradStopp = 4;
+        else if (route.getStops().size() <= 18) VanskelighetsGradStopp = 5;
+        else if (route.getStops().size() <= 21) VanskelighetsGradStopp = 6;
+        else if (route.getStops().size() <= 24) VanskelighetsGradStopp = 7;
+        else if (route.getStops().size() <= 27) VanskelighetsGradStopp = 8;
+        else if (route.getStops().size() <= 30) VanskelighetsGradStopp = 9;
+        else if (route.getStops().size() > 30) VanskelighetsGradStopp = 10;
 
         return 0;
-    };
-
+    }
 }
