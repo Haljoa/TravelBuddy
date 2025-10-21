@@ -1,5 +1,6 @@
 package main.java.org.travel.core;
 
+import main.java.org.travel.API.Notification;
 import main.java.org.travel.core.domain.Route;
 import main.java.org.travel.core.domain.TripData;
 import main.java.org.travel.core.service.RouteService;
@@ -38,9 +39,10 @@ public class Main {
         //Test av TripData og TripDataService
         TripDataService tripDataService = new TripDataService();
 
-        TripData trip1 = new TripData(5, 25, List.of(4, 3, 7, 4, 2), 4, "Some traffic");
-        TripData trip2 = new TripData(12, 16, List.of(6, 4, 15, 6, 7, 7, 13), 2, "Drunk guy yelling at people.");
+        TripData trip1 = new TripData("R4", 25, List.of(4, 3, 7, 4, 2), 4, "Some traffic");
+        TripData trip2 = new TripData("R13", 16, List.of(6, 4, 15, 6, 7, 7, 13), 2, "Drunk guy yelling at people.");
         tripDataService.saveTripData(trip1);
         tripDataService.saveTripData(trip2);
+
     }
 }

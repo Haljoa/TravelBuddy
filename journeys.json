@@ -1,17 +1,41 @@
 [ {
-  "routeId" : 5,
+  "routeId" : "5",
   "totalRouteDuration" : 25,
   "durationsBetweenStops" : [ 4, 3, 7, 4, 2 ],
   "crowdednessLevel" : 4.0,
   "deviations" : "Some traffic"
 }, {
-  "routeId" : 5,
+  "routeId" : "5",
   "totalRouteDuration" : 25,
   "durationsBetweenStops" : [ 4, 3, 7, 4, 2 ],
   "crowdednessLevel" : 4.0,
   "deviations" : "Some traffic"
 }, {
-  "routeId" : 12,
+  "routeId" : "12",
+  "totalRouteDuration" : 16,
+  "durationsBetweenStops" : [ 6, 4, 15, 6, 7, 7, 13 ],
+  "crowdednessLevel" : 2.0,
+  "deviations" : "Drunk guy yelling at people."
+}, {
+  "routeId" : "5",
+  "totalRouteDuration" : 25,
+  "durationsBetweenStops" : [ 4, 3, 7, 4, 2 ],
+  "crowdednessLevel" : 4.0,
+  "deviations" : "Some traffic"
+}, {
+  "routeId" : "12",
+  "totalRouteDuration" : 16,
+  "durationsBetweenStops" : [ 6, 4, 15, 6, 7, 7, 13 ],
+  "crowdednessLevel" : 2.0,
+  "deviations" : "Drunk guy yelling at people."
+}, {
+  "routeId" : "R4",
+  "totalRouteDuration" : 25,
+  "durationsBetweenStops" : [ 4, 3, 7, 4, 2 ],
+  "crowdednessLevel" : 4.0,
+  "deviations" : "Some traffic"
+}, {
+  "routeId" : "R13",
   "totalRouteDuration" : 16,
   "durationsBetweenStops" : [ 6, 4, 15, 6, 7, 7, 13 ],
   "crowdednessLevel" : 2.0,
