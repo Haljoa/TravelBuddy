@@ -26,8 +26,8 @@ public class TransportSystem {
     
     public static void main(String[] args) {
         // Koble til MongoDB
-        MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
-        MongoDatabase database = mongoClient.getDatabase("transportdb");
+        MongoClient mongoClient = MongoClients.create("mongodb+srv://minhbaopokemon_db_user:pooplord123@cluster0.dikzcnh.mongodb.net/");
+        MongoDatabase database = mongoClient.getDatabase("database1");
         
         journeys = database.getCollection("journeys");
         journeysExtraInfo = database.getCollection("journeys_extra_info");
