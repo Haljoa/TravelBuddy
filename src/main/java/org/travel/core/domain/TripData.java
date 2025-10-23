@@ -1,12 +1,14 @@
 package main.java.org.travel.core.domain;
 
 import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.util.List;
 
 public class TripData {
-    //routeId må ha BsonId knyttet til den, siden dette brukes som en unik id i databasen
+    //routeId må ha BsonId og BsonProperty knyttet til den, siden dette brukes som en unik id i databasen
     @BsonId
+    @BsonProperty("_id")
     private String routeId;
 
     private int totalRouteDuration;
@@ -35,6 +37,6 @@ public class TripData {
     public void setRouteId(String routeId) {this.routeId = routeId;}
     public void setTotalRouteDuration(int totalRouteDuration) {this.totalRouteDuration = totalRouteDuration;}
     public void setDurationsBetweenStops(List<Integer> durationsBetweenStops) {this.durationsBetweenStops = durationsBetweenStops;}
-    public void setCrowdednessLevel(int crowdednessLevel) {this.crowdednessLevel = crowdednessLevel;}
+    public void setCrowdednessLevel(double crowdednessLevel) {this.crowdednessLevel = crowdednessLevel;}
     public void setDeviations(String deviations) {this.deviations = deviations;}
 }

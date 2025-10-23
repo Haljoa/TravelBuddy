@@ -35,14 +35,5 @@ public class Main {
                 System.out.println("Route " + route.getRouteId() + ". With the stops " + route.getStops());
             }
         }
-
-        //Test av TripData og TripDataService
-        TripDataService tripDataService = new TripDataService();
-
-        TripData trip1 = new TripData("R4", 25, List.of(4, 3, 7, 4, 2), 4, "Some traffic");
-        TripData trip2 = new TripData("R13", 16, List.of(6, 4, 15, 6, 7, 7, 13), 2, "Drunk guy yelling at people.");
-        tripDataService.saveTripData(trip1);
-        tripDataService.saveTripData(trip2);
-
     }
 }

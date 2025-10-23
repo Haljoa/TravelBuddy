@@ -22,7 +22,7 @@ public class TripDataMongoAdapter implements TripDataRepository {
     //konstruktøren som tar imot DI-en fra MongoDBInjector
     public TripDataMongoAdapter (MongoDatabase database) {
         //her finner mongoDB rett collection med data, og Java driver får klassen som den skal lage objekter av.
-        this.collection = database.getCollection("sett inn navnet på rett collection her", TripData.class);
+        this.collection = database.getCollection("journeysTest", TripData.class);
     }
 
     //CRUD operasjoner under her
@@ -31,7 +31,7 @@ public class TripDataMongoAdapter implements TripDataRepository {
     @Override
     public void saveTripData(TripData tripData) {
         //bruker et filter til å finne samme routeId i databasen som vi sender med som et TripData objekt
-        Bson idMatch = Filters.eq("sett inn riktig primær nøkkel i fra DB her", tripData.getRouteId());
+        Bson idMatch = Filters.eq("routeId", tripData.getRouteId());
         //bytter ut gammel info om ruten ved å overskrive den med ny data, eller lagre ny data hvis ingen finnes
         try {
             collection.replaceOne(idMatch, tripData, new ReplaceOptions().upsert(true));
@@ -45,7 +45,7 @@ public class TripDataMongoAdapter implements TripDataRepository {
     public TripData findRouteById(String routeId) {
         try {
             //finner det første dokumentet i DB hvor PK er lik ruteIDen vi sender med.
-            TripData route = collection.find(Filters.eq("sett inn riktig primær nøkkel i fra DB her", routeId)).first();
+            TripData route = collection.find(Filters.eq("routeId", routeId)).first();
             return route;
         } catch (MongoException exception) {
             System.err.println("Something went wrong. " + exception.getMessage());
