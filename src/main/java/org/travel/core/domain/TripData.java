@@ -1,9 +1,14 @@
 package main.java.org.travel.core.domain;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+
 import java.util.List;
 
 public class TripData {
+    //routeId må ha BsonId knyttet til den, siden dette brukes som en unik id i databasen
+    @BsonId
     private String routeId;
+
     private int totalRouteDuration;
     private List<Integer> durationsBetweenStops;
     private double crowdednessLevel; //
