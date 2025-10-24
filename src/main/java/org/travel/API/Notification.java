@@ -13,6 +13,8 @@ public class Notification {
         this.NotificationDiscription = VarslingDiscription;
     }
 
+    public Notification() {}
+
     public int getNotificationID() {
         return NotificationID;
     }

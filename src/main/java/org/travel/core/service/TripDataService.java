@@ -1,39 +1,41 @@
 package main.java.org.travel.core.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import main.java.org.travel.core.Ports.TripDataRepository;
 import main.java.org.travel.core.domain.TripData;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-//lese og skrive til og fra JSON -> tar input fra TripData klassen og lager JSON objekter av dataen vi sender herfra
+//Denne klassen er service klassen for hele TripData "familien", og til databasen vår. av alle klassene i denne kjeden,
+// fra TripData (som er hva vi her ønsker å lage objekter av, og å kunne sende til, og hente fra databasen)
+// til databasen selv, er det denne klassen man bruker når man ønsker å gjøre CRUD operasjoner.
+//man kaller ikke f.eks. en adapter, her TripDataMongoAdapter, eller en port, her TripDataRepository, direkte for
+//dette, man gjør det gjennom en service klasse som denne, som deretter sender instruksjonene videre.
+
+//Kjeden selv går slik: Main (eller da et UI eller REST API), kaller -> TripDataService, som gjennom porten ->
+//TripDataRepository, videre kaller -> TripDataMongoAdapter, som er kobligen til -> MongoDB.
+//Når en CRUD operasjon skjer, er det denne stien den må gjennom, og følger.
+
+//trenger kanskje ikke Jackson lenger, må se om det brukes andre steder i systemet før jeg fjerner det fra dependencies
 
 public class TripDataService {
-    private static final String file_path = "journeys.json";
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
-    public void saveTripData(TripData tripData) {
-        List<TripData> journeys = readJourneys();
-        journeys.add(tripData);
-
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(file_path), journeys);
-            System.out.println("Route " + tripData.getRouteId() + " has been saved");
-        } catch (IOException exception) {
-            System.err.println("Something went wrong: " + exception.getMessage());
-        }
+    //for å snakke med porten / interfacet
+    private final TripDataRepository repository;
+    public TripDataService(TripDataRepository repository) {
+        this.repository = repository;
     }
 
-    public List<TripData> readJourneys() {
-        try {
-            File file = new File(file_path);
-            return objectMapper.readValue(file, new TypeReference<List<TripData>>() {});
-        } catch (IOException exception) {
-            System.err.println("Something went wrong reading the data: " + exception.getMessage());
-            return new ArrayList<>();
-        }
+    //for lagring av TripData til repository (sende det dertil)
+    public void saveTripData(TripData tripData) {
+        repository.saveTripData(tripData);
+    }
+
+    //for henting av info om en rute via ID
+    public TripData getRouteById(String routeId) {
+        return repository.findRouteById(routeId);
+    }
+
+    //hente alle ruter og info
+    public List<TripData> getAllTrips() {
+        return repository.findAllTrips();
     }
 }
