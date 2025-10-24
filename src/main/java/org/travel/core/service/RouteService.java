@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO DELETE THIS
+
 public class RouteService {
     //laste routes fra JSON, og bruke routesearcher for å finne ønskede ruter
 
