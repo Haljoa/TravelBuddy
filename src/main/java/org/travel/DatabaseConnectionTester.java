@@ -36,8 +36,8 @@ public class DatabaseConnectionTester {
         //skal sendes med her istedet.
         //kanskje lage en metode som lager en ruteId for den dataen som hentes, og returnerer den slik at den
         //kan settes inn her
-        //TripData trip = new TripData("Route_3", 15, List.of(1,4,5,2), 5, "Some traffic");
-        //service.saveTripData(trip);
+        TripData trip = new TripData("Route_5", 15, List.of(1,4,5,2), 5, "Some traffic");
+        service.saveTripData(trip);
 
         //lagre bare en deviation f.eks.
         String routeId = "Route_2";
