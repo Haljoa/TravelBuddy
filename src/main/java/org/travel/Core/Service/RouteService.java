@@ -1,9 +1,9 @@
-package main.java.org.travel.core.service;
+package main.java.org.travel.Core.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import main.java.org.travel.core.domain.Route;
-import main.java.org.travel.core.domain.RouteSearcher;
+import main.java.org.travel.Core.Domain.Route;
+import main.java.org.travel.Core.Domain.RouteSearcher;
 
 import java.io.File;
 import java.io.IOException;

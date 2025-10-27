@@ -6,8 +6,8 @@
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/travel/API/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/travel/API/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/travel/core/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/travel/core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/travel/Core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/travel/Core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>

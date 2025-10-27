@@ -1,13 +1,11 @@
 package main.java.org.travel;
 
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import main.java.org.travel.Adapters.TripDataMongoAdapter;
 import main.java.org.travel.Database.MongoDBInjector;
-import main.java.org.travel.core.Ports.TripDataRepository;
-import main.java.org.travel.core.domain.TripData;
-import main.java.org.travel.core.service.TripDataService;
-import org.bson.Document;
+import main.java.org.travel.Core.Ports.TripDataRepository;
+import main.java.org.travel.Core.Domain.TripData;
+import main.java.org.travel.Core.Service.TripDataService;
 
 import java.util.List;
 

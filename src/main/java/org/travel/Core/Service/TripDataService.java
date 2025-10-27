@@ -1,7 +1,7 @@
-package main.java.org.travel.core.service;
+package main.java.org.travel.Core.Service;
 
-import main.java.org.travel.core.Ports.TripDataRepository;
-import main.java.org.travel.core.domain.TripData;
+import main.java.org.travel.Core.Ports.TripDataRepository;
+import main.java.org.travel.Core.Domain.TripData;
 
 import java.util.List;
 

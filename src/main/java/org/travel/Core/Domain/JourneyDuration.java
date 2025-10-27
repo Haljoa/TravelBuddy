@@ -1,4 +1,4 @@
-package main.java.org.travel.core.domain;
+package main.java.org.travel.Core.Domain;
 
 public class JourneyDuration {
 

@@ -1,4 +1,4 @@
-package main.java.org.travel.core.domain;
+package main.java.org.travel.Core.Domain;
 
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;

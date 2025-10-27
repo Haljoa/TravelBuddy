@@ -1,6 +1,6 @@
-package main.java.org.travel.core.Ports;
+package main.java.org.travel.Core.Ports;
 
-import main.java.org.travel.core.domain.TripData;
+import main.java.org.travel.Core.Domain.TripData;
 
 import java.util.List;
 
