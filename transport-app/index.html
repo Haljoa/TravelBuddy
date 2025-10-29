@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport System</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="css2/style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="header">
+                <h1>🚌 Transport System</h1>
+                <p>Oversikt over reiser og stoppesteder</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">{{ stats.totalJourneys || 0 }}</div>
+                    <div>Totalt Reiser</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">{{ stats.totalAgencies || 0 }}</div>
+                    <div>Transportører</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">{{ stats.totalStops || 0 }}</div>
+                    <div>Stoppesteder</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">{{ stats.busJourneys || 0 }}</div>
+                    <div>Buss-reiser</div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="filter-buttons">
+                    <button class="btn btn-primary" @click="loadAllJourneys()">Alle Reiser</button>
+                    <button class="btn btn-success" @click="filterJourneys('BUS')">Buss 🚌</button>
+                    <button class="btn btn-warning" @click="filterJourneys('TRAIN')">Tog 🚆</button>
+                    <button class="btn btn-info" @click="filterJourneys('BOAT')">Båt ⛴️</button>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" v-model="searchQuery" placeholder="Søk etter stoppested...">
+                    <button class="btn btn-primary" @click="searchStops()">Søk Stoppesteder</button>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="card">
+                    <h3>Reiser (Journeys) {{ filteredJourneys.length }}</h3>
+                    <div v-if="loading.journeys" class="loading">Laster reiser...</div>
+                    <div v-else-if="error.journeys" class="error">{{ error.journeys }}</div>
+                    <div v-else>
+                        <div v-for="journey in filteredJourneys" :key="journey.journey?.routeId" class="journey-item">
+                            <div class="journey-header">
+                                <span class="route-id">{{ journey.journey?.routeId || 'N/A' }}</span>
+                                <span class="agency">{{ journey.agency?.agency_name || 'Ukjent' }}</span>
+                            </div>
+                            <div class="journey-details">
+                                <div><strong>Varighet:</strong> {{ journey.journey?.totalRouteDuration || 0 }} min</div>
+                                <div><strong>Trafikk:</strong> {{ journey.journey?.crowdednessLevel || 0 }}/5</div>
+                                <div><strong>Avvik:</strong> {{ journey.journey?.deviations || 'Ingen' }}</div>
+                                <div><strong>Rute:</strong> {{ journey.extraInfo?.routeName || 'N/A' }}</div>
+                            </div>
+                        </div>
+                        <div v-if="filteredJourneys.length === 0" class="loading">Ingen reiser funnet</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Stoppesteder (Stops) {{ filteredStops.length }}</h3>
+                    <div v-if="loading.stops" class="loading">Laster stoppesteder...</div>
+                    <div v-else-if="error.stops" class="error">{{ error.stops }}</div>
+                    <div v-else>
+                        <div v-for="stop in filteredStops" :key="stop.stop_id" class="journey-item">
+                            <div class="journey-header">
+                                <span class="route-id">{{ stop.stop_name || 'N/A' }}</span>
+                                <span class="agency">{{ stop.city || 'N/A' }}</span>
+                            </div>
+                            <div class="journey-details">
+                                <div><strong>ID:</strong> {{ stop.stop_id || 'N/A' }}</div>
+                                <div><strong>Type:</strong> {{ stop.stop_type || 'N/A' }}</div>
+                                <div v-if="stop.location"><strong>Koordinater:</strong> {{ stop.location.coordinates.join(', ') }}</div>
+                            </div>
+                        </div>
+                        <div v-if="filteredStops.length === 0" class="loading">Ingen stoppesteder funnet</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
