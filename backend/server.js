@@ -65,10 +65,53 @@ app.get('/api/stats', async (req, res) => {
 // Get journeys
 app.get('/api/journeys', async (req, res) => {
     try {
+        console.log("🔍 Fetching journeys with extra info...");
         const db = await connectToMongoDB();
-        const journeys = await db.collection('journeys').find().limit(20).toArray();
-        res.json(journeys);
+        
+        const journeys = await db.collection('journeys').find().toArray();
+        console.log(`✅ Found ${journeys.length} journeys`);
+        
+        
+        const journeysWithExtra = await Promise.all(
+            journeys.map(async (journey) => {
+                const result = {
+                    journey: journey
+                };
+                
+                // Get extra info
+                const extraInfo = await db.collection('journeys_extra_info').findOne({ 
+                    routeId: journey.routeId 
+                });
+                
+                if (extraInfo) {
+                    result.extraInfo = extraInfo;
+                    
+                    // Get agency info
+                    if (extraInfo.agency_id) {
+                        const agency = await db.collection('agencies').findOne({ 
+                            agency_id: extraInfo.agency_id 
+                        });
+                        result.agency = agency;
+                    }
+                    
+                    // Get stop details
+                    if (extraInfo.stops && extraInfo.stops.length > 0) {
+                        const stopDetails = await db.collection('stops').find({
+                            stop_id: { $in: extraInfo.stops }
+                        }).toArray();
+                        result.stopDetails = stopDetails;
+                    }
+                }
+                
+                return result;
+            })
+        );
+        
+        console.log(`🎯 Returning ${journeysWithExtra.length} journeys with combined data`);
+        res.json(journeysWithExtra);
+        
     } catch (error) {
+        console.error('❌ Error fetching journeys:', error);
         res.status(500).json({ error: error.message });
     }
 });

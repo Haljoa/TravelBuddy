@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transport System</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="css2/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="app">
@@ -49,26 +49,27 @@
             </div>
             
             <div class="content">
-                <div class="card">
-                    <h3>Reiser (Journeys) {{ filteredJourneys.length }}</h3>
-                    <div v-if="loading.journeys" class="loading">Laster reiser...</div>
-                    <div v-else-if="error.journeys" class="error">{{ error.journeys }}</div>
-                    <div v-else>
-                        <div v-for="journey in filteredJourneys" :key="journey.journey?.routeId" class="journey-item">
-                            <div class="journey-header">
-                                <span class="route-id">{{ journey.journey?.routeId || 'N/A' }}</span>
-                                <span class="agency">{{ journey.agency?.agency_name || 'Ukjent' }}</span>
-                            </div>
-                            <div class="journey-details">
-                                <div><strong>Varighet:</strong> {{ journey.journey?.totalRouteDuration || 0 }} min</div>
-                                <div><strong>Trafikk:</strong> {{ journey.journey?.crowdednessLevel || 0 }}/5</div>
-                                <div><strong>Avvik:</strong> {{ journey.journey?.deviations || 'Ingen' }}</div>
-                                <div><strong>Rute:</strong> {{ journey.extraInfo?.routeName || 'N/A' }}</div>
-                            </div>
-                        </div>
-                        <div v-if="filteredJourneys.length === 0" class="loading">Ingen reiser funnet</div>
-                    </div>
-                </div>
+            <div class="card">
+    <h3>Reiser ({{ journeys.length }})</h3>
+    <div v-for="item in journeys" :key="item.journey.routeId" class="journey-item">
+        <div class="journey-header">
+            <span class="route-id">{{ item.journey.routeId }}</span>
+            <span class="agency">{{ item.agency?.agency_name || 'Ukjent' }}</span>
+        </div>
+        <div class="journey-details">
+            <div><strong>Varighet:</strong> {{ item.journey.totalRouteDuration }} min</div>
+            <div><strong>Trafikk:</strong> {{ item.journey.crowdednessLevel }}/5</div>
+            <div><strong>Avvik:</strong> {{ item.journey.deviations || 'Ingen' }}</div>
+            <div><strong>Rute:</strong> {{ item.extraInfo?.routeName || 'N/A' }}</div>
+        </div>
+        <div v-if="item.stopDetails && item.stopDetails.length > 0" class="stops-list">
+    <strong>Endestopp:</strong> 
+    <span class="stop-item">
+        {{ item.stopDetails[item.stopDetails.length - 1].stop_name }}
+    </span>
+</div>
+    </div>
+</div>
                 
                 <div class="card">
                     <h3>Stoppesteder (Stops) {{ filteredStops.length }}</h3>
