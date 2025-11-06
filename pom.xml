@@ -72,6 +72,21 @@
             <artifactId>slf4j-api</artifactId>
             <version>2.0.16</version>
         </dependency>
+
+        <!-- Spring Boot Starter Web (for REST API) -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>2.7.18</version>
+    </dependency>
+
+    <!-- Spring Boot Starter Test (for testing) -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <version>2.7.18</version>
+        <scope>test</scope>
+    </dependency>
 </dependencies>
 
 </project>
