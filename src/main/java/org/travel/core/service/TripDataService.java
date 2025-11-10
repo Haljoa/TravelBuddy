@@ -1,5 +1,6 @@
 package main.java.org.travel.core.service;
 
+import main.java.org.travel.core.Ports.TripDataInputPort;
 import main.java.org.travel.core.Ports.TripDataRepository;
 import main.java.org.travel.core.domain.TripData;
 
@@ -11,13 +12,17 @@ import java.util.List;
 //man kaller ikke f.eks. en adapter, her TripDataMongoAdapter, eller en port, her TripDataRepository, direkte for
 //dette, man gjør det gjennom en service klasse som denne, som deretter sender instruksjonene videre.
 
-//Kjeden selv går slik: Main (eller da et UI eller REST API), kaller -> TripDataService, som gjennom porten ->
-//TripDataRepository, videre kaller -> TripDataMongoAdapter, som er kobligen til -> MongoDB.
+//Kjeden går slik:
+//Main (eller da brukeren via UI'et), kaller ->
+//In-porten, TripDataInputPort. gjennom denne in-porten kalles ->
+//TripDataService, som gjennom out-porten ->
+//TripDataRepository, videre kaller ->
+//TripDataMongoAdapter, som er kobligen til -> MongoDB.
 //Når en CRUD operasjon skjer, er det denne stien den må gjennom, og følger.
 
 //trenger kanskje ikke Jackson lenger, må se om det brukes andre steder i systemet før jeg fjerner det fra dependencies
 
-public class TripDataService {
+public class TripDataService implements TripDataInputPort {
     //for å snakke med porten / interfacet
     private final TripDataRepository repository;
     public TripDataService(TripDataRepository repository) {
@@ -31,11 +36,11 @@ public class TripDataService {
 
     //for henting av info om en rute via ID
     public TripData getRouteById(String routeId) {
-        return repository.findRouteById(routeId);
+        return repository.getRouteById(routeId);
     }
 
     //hente alle ruter og info
     public List<TripData> getAllTrips() {
-        return repository.findAllTrips();
+        return repository.getAllTrips();
     }
 }
