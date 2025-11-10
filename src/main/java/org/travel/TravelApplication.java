@@ -1,4 +1,4 @@
-package main.java.org.travel;
+package org.travel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

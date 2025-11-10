@@ -1,6 +1,6 @@
 package org.travel.Adapters;
-import main.java.org.travel.Core.Domain.TripData;
-import main.java.org.travel.Core.Service.TripDataService;
+import org.travel.Core.Domain.TripData;
+import org.travel.Core.Service.TripDataService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 

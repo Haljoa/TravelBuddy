@@ -1,6 +1,6 @@
-package main.java.org.travel.Core.Domain;
+package org.travel.Core.Domain.Notification;
 
-public class BusynessNotification extends Notifiaction {
+public class BusynessNotification extends Notification {
     //Busyness Notification. RouteId is which line and Busyness is most likely going to be a scale 1-100.
     private int RouteID;
     private int Busyness;

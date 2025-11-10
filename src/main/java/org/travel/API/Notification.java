@@ -1,4 +1,4 @@
-package main.java.org.travel.API;
+package org.travel.API;
 import java.util.HashMap;
 import java.util.Objects;
 

@@ -74,8 +74,6 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
-<<<<<<< HEAD
-=======
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -104,16 +102,10 @@
             <version>5.12.2</version>
             <scope>compile</scope>
         </dependency>
->>>>>>> Integrasjonstesting-av-tilkobling,-skriving,-og-henting-av-data-fra-databasen-vår.-samt-ny-port
     </dependencies>
 
-    <build>
-        <plugins>
-
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+    </plugin>
 </project>

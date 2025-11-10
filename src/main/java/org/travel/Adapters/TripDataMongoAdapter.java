@@ -1,12 +1,12 @@
-package main.java.org.travel.Adapters;
+package org.travel.Adapters;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.ReplaceOptions;
-import main.java.org.travel.Core.Ports.TripDataRepository;
-import main.java.org.travel.Core.Domain.TripData;
+import org.travel.Core.Ports.TripDataRepository;
+import org.travel.Core.Domain.TripData;
 import org.bson.conversions.Bson;
 
 import java.util.ArrayList;

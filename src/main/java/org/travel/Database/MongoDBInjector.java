@@ -1,4 +1,4 @@
-package main.java.org.travel.Database;
+package org.travel.Database;
 
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;

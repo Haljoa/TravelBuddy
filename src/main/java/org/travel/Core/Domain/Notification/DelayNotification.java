@@ -1,6 +1,6 @@
-package main.java.org.travel.Core.Domain;
+package org.travel.Core.Domain.Notification;
 
-public class DelayNotification extends Notifiaction {
+public class DelayNotification extends Notification {
     //DelayNotification. RouteId is which line and delay is the amount in minutes
 
     private final int routeID;
