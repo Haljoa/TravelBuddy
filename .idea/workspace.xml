@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java" afterDir="false" />
-    </list>
+    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,12 +26,12 @@
     &quot;assignee&quot;: &quot;mmbnnnbn&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,
-    &quot;accountId&quot;: &quot;739821b0-9818-4270-8fbb-120d6287f060&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Haljoa/TravelBuddy.git",
+    "accountId": "26c17351-ea5a-4fe7-9c07-1ded77b97e3f"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -50,6 +46,7 @@
     "Application.TravelApplication.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "development",
     "kotlin-language-version-configured": "true",
@@ -59,6 +56,7 @@
     "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="" />

@@ -1,10 +1,10 @@
 package tests.databaseTests;
 
 import com.mongodb.client.MongoDatabase;
-import main.java.org.travel.Adapters.TripDataMongoAdapter;
-import main.java.org.travel.core.Ports.TripDataInputPort;
-import main.java.org.travel.core.domain.TripData;
-import main.java.org.travel.core.service.TripDataService;
+import org.travel.Adapters.TripDataMongoAdapter;
+import org.travel.Core.Ports.TripDataInputPort;
+import org.travel.Core.Domain.TripData;
+import org.travel.Core.Service.TripDataService;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
