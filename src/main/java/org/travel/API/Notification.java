@@ -32,7 +32,7 @@ public class Notification {
     }
 
 
-    public static Notification UserInputVarsling(int NotificationID) {
+    public static Notification UserNotification(int NotificationID) {
 
         HashMap<Integer, String> Notification = new HashMap<Integer, String>();
 
