@@ -1,0 +1,64 @@
+<changelist name="Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]" date="1762511215015" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 07/11/2025 11:26 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/service/RouteService$1.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/service/RouteService$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/RouteService$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/domain/RouteSearcher.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/domain/RouteSearcher.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/RouteSearcher.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/service/RouteService.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/service/RouteService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/RouteService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/domain/Route.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/domain/Route.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/Route.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/Adapters/TripDataMongoAdapter.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/Adapters/TripDataMongoAdapter.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/TripDataMongoAdapter.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/Ports/TripDataRepository.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/Ports/TripDataRepository.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/TripDataRepository.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/Ports/JourneyDurationInputPort.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/Ports/JourneyDurationInputPort.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/JourneyDurationInputPort.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/domain/TripData.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/domain/TripData.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/TripData.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/service/TripDataService.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/service/TripDataService.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/TripDataService.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/Main.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/core/domain/JourneyDuration.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/core/domain/JourneyDuration.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/JourneyDuration.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TravelBoody/main/java/org/travel/DatabaseConnectionTester.class" />
+    <option name="AFTER_PATH" value="out/production/TravelBoody/main/java/org/travel/DatabaseConnectionTester.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/DatabaseConnectionTester.class" />
+  </binary>
+</changelist>
