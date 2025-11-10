@@ -87,7 +87,7 @@
         <dependency>
             <groupId>de.flapdoodle.embed</groupId>
             <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <version>4.12.2</version>
+            <version>3.5.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -103,9 +103,4 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
-    <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-    </plugin>
 </project>
