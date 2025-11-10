@@ -1,4 +1,4 @@
-package main.java.org.travel.Core.Domain;
+package org.travel.Core.Domain;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package main.java.org.travel.API;
+package org.travel.API;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;

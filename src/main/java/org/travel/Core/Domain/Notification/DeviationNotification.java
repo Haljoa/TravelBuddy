@@ -1,6 +1,6 @@
-package main.java.org.travel.Core.Domain;
+package org.travel.Core.Domain.Notification;
 
-public class DeviationNotification extends Notifiaction{
+public class DeviationNotification extends Notification {
  //Deviation Notification is when a line becomes unavailable, deviations is the reason for the deviation
     private final int RouteID;
     private final String deviations;

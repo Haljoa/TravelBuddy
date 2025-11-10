@@ -1,7 +1,7 @@
-package main.java.org.travel.Core.Service;
-import main.java.org.travel.API.Notification;
-import main.java.org.travel.Core.Domain.*;
-import main.java.org.travel.Core.Ports.NotificationPort;
+package org.travel.Core.Service;
+import org.travel.Core.DTO.NotificationData;
+import org.travel.Core.Domain.Notification.*;
+import org.travel.Core.Ports.NotificationPort;
 
 import java.util.*;
 /**

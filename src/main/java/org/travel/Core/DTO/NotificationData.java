@@ -1,4 +1,4 @@
-package main.java.org.travel.Core.Domain;
+package org.travel.Core.DTO;
 
 //Notification DTO
 

@@ -1,6 +1,6 @@
-package main.java.org.travel.Core.Domain;
+package org.travel.Core.Domain.Notification;
 
-public class AccessibilityNotification extends Notifiaction{
+public class AccessibilityNotification extends Notification {
 //Notification about if there is any problems with accessibility, stopid is which stop the problem occurs
     private final int StopID;
 

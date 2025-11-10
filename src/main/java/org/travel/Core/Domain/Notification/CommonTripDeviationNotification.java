@@ -1,8 +1,7 @@
-package main.java.org.travel.Core.Domain;
+package org.travel.Core.Domain.Notification;
 
 
-
-public class CommonTripDeviationNotification extends Notifiaction {
+public class CommonTripDeviationNotification extends Notification {
  private final int UserID;
  private final int routeID;
 

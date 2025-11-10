@@ -1,13 +1,10 @@
-package main.java.org.travel.Core.Service;
+package org.travel.Core.Service;
 
-<<<<<<< HEAD:src/main/java/org/travel/Core/Service/TripDataService.java
-import main.java.org.travel.Core.Ports.TripDataRepository;
-import main.java.org.travel.Core.Domain.TripData;
-=======
-import main.java.org.travel.core.Ports.TripDataInputPort;
-import main.java.org.travel.core.Ports.TripDataRepository;
-import main.java.org.travel.core.domain.TripData;
->>>>>>> Integrasjonstesting-av-tilkobling,-skriving,-og-henting-av-data-fra-databasen-vår.-samt-ny-port:src/main/java/org/travel/core/service/TripDataService.java
+import org.travel.Core.Ports.TripDataRepository;
+import org.travel.Core.Domain.TripData;
+import org.travel.Core.Ports.TripDataInputPort;
+import org.travel.Core.Ports.TripDataRepository;
+import org.travel.Core.Domain.TripData;
 
 import java.util.List;
 

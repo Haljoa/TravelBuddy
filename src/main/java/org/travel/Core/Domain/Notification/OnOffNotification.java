@@ -1,6 +1,6 @@
-package main.java.org.travel.Core.Domain;
+package org.travel.Core.Domain.Notification;
 
-public class OnOffNotification extends Notifiaction{
+public class OnOffNotification extends Notification {
 
     private final int UntilOnOff;
     private final int RouteID;
