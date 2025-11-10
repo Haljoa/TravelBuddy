@@ -1,10 +1,8 @@
 package org.travel.Core.Service;
 
-import org.travel.Core.Ports.TripDataRepository;
 import org.travel.Core.Domain.TripData;
 import org.travel.Core.Ports.TripDataInputPort;
 import org.travel.Core.Ports.TripDataRepository;
-import org.travel.Core.Domain.TripData;
 
 import java.util.List;
 

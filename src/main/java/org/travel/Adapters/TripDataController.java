@@ -1,7 +1,9 @@
 package org.travel.Adapters;
+
+import org.springframework.web.bind.annotation.*;
 import org.travel.Core.Domain.TripData;
 import org.travel.Core.Service.TripDataService;
-import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
