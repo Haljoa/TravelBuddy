@@ -5,8 +5,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.ReplaceOptions;
-import main.java.org.travel.core.Ports.TripDataRepository;
-import main.java.org.travel.core.domain.TripData;
+import main.java.org.travel.Core.Ports.TripDataRepository;
+import main.java.org.travel.Core.Domain.TripData;
 import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
@@ -30,8 +30,8 @@ public class TripDataMongoAdapter implements TripDataRepository {
     //https://www.mongodb.com/docs/drivers/java/sync/current/
     @Override
     public void saveTripData(TripData tripData) {
-        //bruker et filter til å finne samme routeId i databasen som vi sender med som et TripData objekt
-        Bson idMatch = Filters.eq("routeId", tripData.getRouteId());
+        //bruker et filter til å finne samme routeId (_id) i databasen som vi sender med som et TripData objekt
+        Bson idMatch = Filters.eq("_id", tripData.getRouteId());
         //bytter ut gammel info om ruten ved å overskrive den med ny data, eller lagre ny data hvis ingen finnes
         try {
             collection.replaceOne(idMatch, tripData, new ReplaceOptions().upsert(true));
@@ -42,10 +42,10 @@ public class TripDataMongoAdapter implements TripDataRepository {
     }
 
     @Override
-    public TripData findRouteById(String routeId) {
+    public TripData getRouteById(String routeId) {
         try {
             //finner det første dokumentet i DB hvor PK er lik ruteIDen vi sender med.
-            TripData route = collection.find(Filters.eq("routeId", routeId)).first();
+            TripData route = collection.find(Filters.eq("_id", routeId)).first();
             return route;
         } catch (MongoException exception) {
             System.err.println("Something went wrong. " + exception.getMessage());
@@ -54,7 +54,7 @@ public class TripDataMongoAdapter implements TripDataRepository {
     }
 
     @Override
-    public List<TripData> findAllTrips() {
+    public List<TripData> getAllTrips() {
         //finner alle dokumenter i database collectionen som er definert i konstruktøren i denne klassen,
         //og legger dem inn i en liste.
         List<TripData> allTrips = new ArrayList<>();

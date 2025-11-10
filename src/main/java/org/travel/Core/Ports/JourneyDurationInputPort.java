@@ -1,4 +1,4 @@
-package main.java.org.travel.core.Ports;
+package main.java.org.travel.Core.Ports;
 
 public interface JourneyDurationInputPort {
     //Input porten for JourneyDuration

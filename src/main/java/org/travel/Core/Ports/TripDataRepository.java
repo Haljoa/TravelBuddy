@@ -1,10 +1,12 @@
-package main.java.org.travel.core.Ports;
+package main.java.org.travel.Core.Ports;
 
-import main.java.org.travel.core.domain.TripData;
+import main.java.org.travel.Core.Domain.TripData;
 
 import java.util.List;
 
 public interface TripDataRepository {
+    //dette er da out-port til tripdata delen av systemet
+
     //slik jeg forstod det, kan porter sees på som stikkontakter på utsiden av kjernen i arkitekturen.
     //stikkontakten bestemmer hvordan noe som plugges inn i den må se ut, men ikke nødvendigvis hvordan
     //det må fungere eller oppføre seg.
@@ -15,7 +17,7 @@ public interface TripDataRepository {
     //for lagring av ekstra data om ruten
     void saveTripData(TripData tripData);
     //for å hente data om én rute basert på Iden dens
-    TripData findRouteById(String routeId);
+    TripData getRouteById(String routeId);
     //henting av all data om alle ruter
-    List<TripData> findAllTrips();
+    List<TripData> getAllTrips();
 }

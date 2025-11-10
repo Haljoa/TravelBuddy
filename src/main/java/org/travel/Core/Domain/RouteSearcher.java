@@ -1,4 +1,4 @@
-package main.java.org.travel.core.domain;
+package main.java.org.travel.Core.Domain;
 
 import java.util.ArrayList;
 import java.util.List;

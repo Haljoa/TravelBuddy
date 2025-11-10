@@ -1,10 +1,7 @@
-package main.java.org.travel.core;
+package main.java.org.travel.Core;
 
-import main.java.org.travel.API.Notification;
-import main.java.org.travel.core.domain.Route;
-import main.java.org.travel.core.domain.TripData;
-import main.java.org.travel.core.service.RouteService;
-import main.java.org.travel.core.service.TripDataService;
+import main.java.org.travel.Core.Domain.Route;
+import main.java.org.travel.Core.Service.RouteService;
 
 import java.util.List;
 import java.util.Scanner;

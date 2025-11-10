@@ -1,4 +1,4 @@
-package main.java.org.travel.core.domain;
+package main.java.org.travel.Core.Domain;
 
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
@@ -39,4 +39,15 @@ public class TripData {
     public void setDurationsBetweenStops(List<Integer> durationsBetweenStops) {this.durationsBetweenStops = durationsBetweenStops;}
     public void setCrowdednessLevel(double crowdednessLevel) {this.crowdednessLevel = crowdednessLevel;}
     public void setDeviations(String deviations) {this.deviations = deviations;}
+
+    @Override
+    public String toString() {
+        return "TripData{" +
+                "routeId = " + routeId + "\n" +
+                "totalRouteDuration = " + totalRouteDuration + "\n" +
+                "durationsBetweenStops = " + durationsBetweenStops + "\n" +
+                "crowdednessLevel = " + crowdednessLevel + "\n" +
+                "deviations = " + deviations + "\n" +
+                "}";
+    }
 }

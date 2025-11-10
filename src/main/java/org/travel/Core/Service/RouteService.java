@@ -1,14 +1,16 @@
-package main.java.org.travel.core.service;
+package main.java.org.travel.Core.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import main.java.org.travel.core.domain.Route;
-import main.java.org.travel.core.domain.RouteSearcher;
+import main.java.org.travel.Core.Domain.Route;
+import main.java.org.travel.Core.Domain.RouteSearcher;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+//TODO DELETE THIS
 
 public class RouteService {
     //laste routes fra JSON, og bruke routesearcher for å finne ønskede ruter
