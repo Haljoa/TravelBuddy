@@ -2,6 +2,9 @@ package org.travel.API;
 
 import java.util.Scanner;
 
+
+//TODO: see if we are going to use this.
+
 public class UserReports {
 
     private String Report;
