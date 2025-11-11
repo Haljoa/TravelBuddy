@@ -13,6 +13,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/CommonTripDeviationNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/CommonTripDeviationNotification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/API/Notification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/API/UserReports.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/API/UserReports.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/API/Userfromto.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
