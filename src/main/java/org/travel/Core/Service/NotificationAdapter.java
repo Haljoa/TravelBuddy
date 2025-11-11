@@ -31,7 +31,7 @@ public class NotificationAdapter implements NotificationPort {
                 case ACCESSIBILITY:
                     return new AccessibilityNotification(description,data.notificationID, data.stopID);
                 case COMMONTRIPDEVIATION:
-                    return new CommonTripDeviationNotification(description,data.notificationID, data.UserID, data.routeID);
+                    return new CommonTripDeviationNotification(description,data.notificationID, data.routeID, data.deviations, data.UserID);
 
                 default:
                     throw new IllegalArgumentException("Unknown notification type" + Type);
