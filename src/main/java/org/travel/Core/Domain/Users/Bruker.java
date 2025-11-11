@@ -2,8 +2,9 @@ package org.travel.Core.Domain.Users;
 
 public abstract class Bruker {
 
-    final int AccessLevel = 0;
-    String Username;
+    private final int AccessLevel = 0;
+    private int UserID;
+    private String Username;
 
     public Bruker(String username) {
         Username = username;
@@ -15,5 +16,9 @@ public abstract class Bruker {
 
     public void setUsername(String username) {
         Username = username;
+    }
+
+    public void setUserID() {
+
     }
 }

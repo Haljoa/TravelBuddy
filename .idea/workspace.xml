@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Bruker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Developer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Kunde.java" afterDir="false" />
+    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="Brukere start">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/UserCreater.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Bruker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Bruker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,11 +107,20 @@
       <option name="project" value="LOCAL" />
       <updated>1762784818563</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Brukere start">
+      <option name="closed" value="true" />
+      <created>1762886573419</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762886573419</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="god i fucking hate git" />
-    <option name="LAST_COMMIT_MESSAGE" value="god i fucking hate git" />
+    <MESSAGE value="Brukere start" />
+    <option name="LAST_COMMIT_MESSAGE" value="Brukere start" />
   </component>
 </project>
