@@ -1,4 +1,4 @@
-package tests.databaseTests;
+package org.travel.databaseTests;
 
 import com.mongodb.client.MongoDatabase;
 import org.travel.Adapters.TripDataMongoAdapter;
