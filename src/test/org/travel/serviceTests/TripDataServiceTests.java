@@ -1,4 +1,4 @@
-package test.java.serviceTests;
+package org.travel.serviceTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
