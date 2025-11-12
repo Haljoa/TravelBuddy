@@ -5,26 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/serviceTests/TripDataServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/API/FraogTilInput.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/API/Notification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/API/Travelhet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/API/UserReports.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/Adapters/TripDataMongoAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/Database/MongoDBInjector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/DatabaseConnectionTester.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/core/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/core/Ports/TripDataInputPort.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/core/Ports/TripDataRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/core/domain/TripData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/main/java/org/travel/core/service/TripDataService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/tests/databaseTests/MongoDBInMemoryTestServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/tests/databaseTests/TripDataIntegrationTests.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/databaseTests/MongoDBInMemoryTestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/databaseTests/MongoDBInMemoryTestServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/databaseTests/TripDataIntegrationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/databaseTests/TripDataIntegrationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/databaseTests/MongoDBInMemoryTestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/databaseTests/MongoDBInMemoryTestServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/databaseTests/TripDataIntegrationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/databaseTests/TripDataIntegrationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/serviceTests/TripDataServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/serviceTests/TripDataServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +24,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -61,26 +51,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DatabaseConnectionTester.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TravelApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataIntegrationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tests.databaseTests in TravelBoody.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Entur-til-database&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DatabaseConnectionTester.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.TravelApplication.executor": "Run",
+    "JUnit.TripDataIntegrationTests.executor": "Run",
+    "JUnit.TripDataServiceTests.executor": "Run",
+    "JUnit.tests.databaseTests in TravelBoody.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Entur-til-database",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="tests.databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TravelBoody" />

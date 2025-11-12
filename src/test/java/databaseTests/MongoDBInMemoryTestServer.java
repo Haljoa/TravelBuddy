@@ -1,4 +1,4 @@
-package java.databaseTests;
+package test.java.databaseTests;
 
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
