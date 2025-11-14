@@ -4,39 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="Brukere start">
+    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="Fikset pakkestrukturen for brukere branchen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/API/GraphQLClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/API/GraphQLClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/API/Travelhet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/API/Travelhet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/API/UserReports.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/API/UserReports.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Adapters/TripDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Adapters/TripDataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Adapters/TripDataMongoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Adapters/TripDataMongoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/DTO/NotificationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/DTO/NotificationData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Journeymaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Journeymaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/AccessibilityNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Notification/AccessibilityNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/BusynessNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Notification/BusynessNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/CommonTripDeviationNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Notification/CommonTripDeviationNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/DelayNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Notification/DelayNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/DeviationNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Notification/DeviationNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Notification/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/NotificationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Notification/NotificationType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Notification/OnOffNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Notification/OnOffNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/TripData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/TripData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Users/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Bruker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Users/Bruker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Developer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Users/Developer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Domain/Users/Kunde.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Domain/Users/Kunde.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Ports/NotificationPort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/TripDataInputPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Ports/TripDataInputPort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/TripDataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Ports/TripDataRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Service/NotificationAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/TripDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Service/TripDataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/UserCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Core/Service/UserCreater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Database/MongoDBInjector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/Database/MongoDBInjector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/DatabaseConnectionTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/TravelApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/travel/TravelApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/databaseTests/TripDataIntegrationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/databaseTests/TripDataIntegrationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Users/Bruker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Users/Bruker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,25 +50,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DatabaseConnectionTester.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TravelApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataIntegrationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tests.databaseTests in TravelBoody.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Brukere&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DatabaseConnectionTester.executor": "Run",
+    "Application.TravelApplication.executor": "Run",
+    "JUnit.TripDataIntegrationTests.executor": "Run",
+    "JUnit.databaseTests in TravelBoody.executor": "Run",
+    "JUnit.tests.databaseTests in TravelBoody.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Brukere",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main\org\travel" />
+      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main" />
+      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src" />
+    </key>
+  </component>
   <component name="RunManager" selected="JUnit.databaseTests in TravelBoody">
     <configuration name="databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TravelBoody" />
@@ -159,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762886573419</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fikset pakkestrukturen for brukere branchen">
+      <option name="closed" value="true" />
+      <created>1763114487290</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114487290</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +163,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="god i fucking hate git" />
     <MESSAGE value="Brukere start" />
-    <option name="LAST_COMMIT_MESSAGE" value="Brukere start" />
+    <MESSAGE value="Fikset pakkestrukturen for brukere branchen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fikset pakkestrukturen for brukere branchen" />
   </component>
 </project>
