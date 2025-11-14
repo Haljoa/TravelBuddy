@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/test/org/travel/databaseTests/MongoDBInMemoryTestServer.java
 package org.travel.databaseTests;
+=======
+package databaseTests;
+>>>>>>> Brukere:src/tests/databaseTests/MongoDBInMemoryTestServer.java
 
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;

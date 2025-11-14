@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/test/org/travel/databaseTests/TripDataIntegrationTests.java
 package org.travel.databaseTests;
+=======
+package databaseTests;
+>>>>>>> Brukere:src/tests/databaseTests/TripDataIntegrationTests.java
 
 import com.mongodb.client.MongoDatabase;
 import org.travel.Adapters.TripDataMongoAdapter;

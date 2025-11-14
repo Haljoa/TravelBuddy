@@ -1,5 +1,6 @@
 package org.travel.Core;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.JsonNode;
 import org.travel.API.GraphQLClient;
 import org.travel.Core.Domain.Journeymaker;
@@ -21,3 +22,10 @@ public static void main(String[] args) throws Exception {
 }
     }
 
+=======
+public class Main {
+    public static void main(String[] args) {
+
+    }
+}
+>>>>>>> Brukere

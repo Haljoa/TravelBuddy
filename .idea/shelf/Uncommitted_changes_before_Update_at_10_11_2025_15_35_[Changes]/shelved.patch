@@ -1,0 +1,72 @@
+Index: src/tests/databaseTests/TripDataIntegrationTests.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tests.databaseTests;\r\n\r\nimport com.mongodb.client.MongoDatabase;\r\nimport main.java.org.travel.Adapters.TripDataMongoAdapter;\r\nimport main.java.org.travel.core.Ports.TripDataInputPort;\r\nimport main.java.org.travel.core.domain.TripData;\r\nimport main.java.org.travel.core.service.TripDataService;\r\nimport org.junit.jupiter.api.AfterAll;\r\nimport org.junit.jupiter.api.Assertions;\r\nimport org.junit.jupiter.api.BeforeAll;\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\npublic class TripDataIntegrationTests {\r\n    //bruker test-serveren\r\n    private static MongoDBInMemoryTestServer server;\r\n    //bruker in-porten som inngangs punkt\r\n    private static TripDataInputPort service;\r\n\r\n    @BeforeAll\r\n    static void setup() throws Exception {\r\n        //starter in-memory serveren\r\n        server = new MongoDBInMemoryTestServer();\r\n        MongoDatabase database = server.start();\r\n        //kobler adapteren til in-memory databasen\r\n        TripDataMongoAdapter adapter =  new TripDataMongoAdapter(database);\r\n        //kobler sammen adapteren til service klassen via in-porten\r\n        service = new TripDataService(adapter);\r\n        //test koden her vil da bevege seg til service klassen via in-porten,\r\n        //deretter til adapteren gjennom out-porten, og til in-memory test serveren.\r\n    }\r\n\r\n    @AfterAll\r\n    static void teardown() {\r\n        //stenger databasen etter testene\r\n        server.stop();\r\n    }\r\n\r\n    @Test\r\n    void testingSaveAndGetTrips() {\r\n        //arrange\r\n        TripData trip = new TripData(\r\n                \"Route1\", 25, Arrays.asList(2, 12, 5, 6), 0.8, \"Some Traffic\"\r\n        );\r\n\r\n        //act\r\n        //lagrer denne til in-memory databasen via in-porten og service\r\n        service.saveTripData(trip);\r\n        //henter denne fra DB basert på IDen\r\n        TripData gotById = service.getRouteById(\"Route1\");\r\n\r\n        //assert\r\n        Assertions.assertNotNull(gotById);\r\n        Assertions.assertEquals(\"Route1\", gotById.getRouteId());\r\n        Assertions.assertEquals(25, gotById.getTotalRouteDuration());\r\n        Assertions.assertEquals(List.of(2, 12, 5, 6), gotById.getDurationsBetweenStops());\r\n        Assertions.assertEquals(0.8, gotById.getCrowdednessLevel());\r\n        Assertions.assertEquals(\"Some Traffic\", gotById.getDeviations());\r\n    }\r\n\r\n    @Test\r\n    void testingGetAllTrips() {\r\n        //arrange\r\n        TripData trip1 = new TripData(\r\n                \"Route2\", 20, List.of(2, 5, 5, 12, 4), 0.3,\r\n                \"Loud man shouting at people\");\r\n        TripData trip2 = new TripData(\r\n                \"Route3\", 39, List.of(12, 2, 4, 15, 6), 0.6,\r\n                \"Driver playing loud music and singing\");\r\n\r\n        service.saveTripData(trip1);\r\n        service.saveTripData(trip2);\r\n\r\n        //act\r\n        List<TripData> allTrips = service.getAllTrips();\r\n\r\n        //assert\r\n        Assertions.assertEquals(3, allTrips.size());\r\n        //ser om rutene faktisk ligger i listen\r\n        Assertions.assertTrue(allTrips.stream().anyMatch(t -> t.getRouteId().equals(\"Route2\")));\r\n        Assertions.assertTrue(allTrips.stream().anyMatch(t -> t.getRouteId().equals(\"Route3\")));\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/tests/databaseTests/TripDataIntegrationTests.java b/src/tests/databaseTests/TripDataIntegrationTests.java
+--- a/src/tests/databaseTests/TripDataIntegrationTests.java	(revision bfaec18cc9fbbd1e89b38b883f7c3f63975a0db8)
++++ b/src/tests/databaseTests/TripDataIntegrationTests.java	(date 1762785339766)
+@@ -1,10 +1,10 @@
+ package tests.databaseTests;
+ 
+ import com.mongodb.client.MongoDatabase;
+-import main.java.org.travel.Adapters.TripDataMongoAdapter;
+-import main.java.org.travel.core.Ports.TripDataInputPort;
+-import main.java.org.travel.core.domain.TripData;
+-import main.java.org.travel.core.service.TripDataService;
++import org.travel.Adapters.TripDataMongoAdapter;
++import org.travel.Core.Ports.TripDataInputPort;
++import org.travel.Core.Domain.TripData;
++import org.travel.Core.Service.TripDataService;
+ import org.junit.jupiter.api.AfterAll;
+ import org.junit.jupiter.api.Assertions;
+ import org.junit.jupiter.api.BeforeAll;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9d10be3e-fd36-4f5a-a41e-0ab631a7e786\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mmbnnnbn&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,\r\n    &quot;accountId&quot;: &quot;739821b0-9818-4270-8fbb-120d6287f060&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3580LKHUwbNxxAJyp1w66rhTzTI\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.DatabaseConnectionTester.executor\": \"Run\",\r\n    \"Application.TravelApplication.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"development\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\"\r\n  }\r\n}]]></component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9d10be3e-fd36-4f5a-a41e-0ab631a7e786\" name=\"Changes\" comment=\"\" />\r\n      <created>1762476334703</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1762476334703</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"god i fucking hate git\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762784818563</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762784818563</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"god i fucking hate git\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"god i fucking hate git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision bfaec18cc9fbbd1e89b38b883f7c3f63975a0db8)
++++ b/.idea/workspace.xml	(date 1762785224067)
+@@ -4,11 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java" afterDir="false" />
+-    </list>
++    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="aaaaaaaaaaaaaaaaaaaaaa" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -75,11 +71,20 @@
+       <option name="project" value="LOCAL" />
+       <updated>1762784818563</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="aaaaaaaaaaaaaaaaaaaaaa">
++      <option name="closed" value="true" />
++      <created>1762785119929</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1762785119929</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="god i fucking hate git" />
+-    <option name="LAST_COMMIT_MESSAGE" value="god i fucking hate git" />
++    <MESSAGE value="aaaaaaaaaaaaaaaaaaaaaa" />
++    <option name="LAST_COMMIT_MESSAGE" value="aaaaaaaaaaaaaaaaaaaaaa" />
+   </component>
+ </project>
+\ No newline at end of file

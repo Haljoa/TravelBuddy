@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" afterDir="false" />
+=======
+    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="Fikset pakkestrukturen for brukere branchen">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Users/Bruker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Users/Bruker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" afterDir="false" />
+>>>>>>> Brukere
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -37,7 +45,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,
-    &quot;accountId&quot;: &quot;26c17351-ea5a-4fe7-9c07-1ded77b97e3f&quot;
+    &quot;accountId&quot;: &quot;e041e7da-4a8c-492c-9dac-e6823cdd0efc&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -55,16 +63,21 @@
     "Application.TravelApplication.executor": "Run",
     "JUnit.All in TravelBoody.executor": "Run",
     "JUnit.TripDataIntegrationTests.executor": "Run",
+<<<<<<< HEAD
     "JUnit.TripDataServiceTests.executor": "Run",
+=======
+    "JUnit.databaseTests in TravelBoody.executor": "Run",
+>>>>>>> Brukere
     "JUnit.tests.databaseTests in TravelBoody.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "development",
+    "git-widget-placeholder": "Brukere",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests",
     "project.structure.last.edited": "Modules",
+<<<<<<< HEAD
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default"
@@ -72,6 +85,37 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="All in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+=======
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main\org\travel" />
+      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main" />
+      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.databaseTests in TravelBoody">
+    <configuration name="databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TravelBoody" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="databaseTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="databaseTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tests.databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+>>>>>>> Brukere
       <module name="TravelBoody" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
@@ -81,7 +125,12 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="JUnit.All in TravelBoody" />
+=======
+        <item itemvalue="JUnit.databaseTests in TravelBoody" />
+        <item itemvalue="JUnit.tests.databaseTests in TravelBoody" />
+>>>>>>> Brukere
       </list>
     </recent_temporary>
   </component>
@@ -102,11 +151,40 @@
       <option name="project" value="LOCAL" />
       <updated>1762784818563</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Brukere start">
+      <option name="closed" value="true" />
+      <created>1762886573419</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762886573419</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fikset pakkestrukturen for brukere branchen">
+      <option name="closed" value="true" />
+      <created>1763114487290</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763114487290</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="god i fucking hate git" />
-    <option name="LAST_COMMIT_MESSAGE" value="god i fucking hate git" />
+    <MESSAGE value="Brukere start" />
+    <MESSAGE value="Fikset pakkestrukturen for brukere branchen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fikset pakkestrukturen for brukere branchen" />
   </component>
 </project>
