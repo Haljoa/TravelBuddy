@@ -1,11 +1,16 @@
 package org.travel.API;
+import org.travel.Core.Ports.JourneyClientPort;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class GraphQLClient {
-    public static String JourneyV3Query(String fromPlace, String toPlace) throws Exception {
+//denne klassen er en dependency injector, for http funksjonalitet, for EnturTripDataAdapter
+public class GraphQLClient implements JourneyClientPort {
+
+    @Override
+    public String journeyV3Query(String fromPlace, String toPlace) throws Exception {
         String Response;
 //      String fromPlace = Userfromto.Fromstop("Fra");//"NSR:StopPlace:2534"
 //      String toPlace = Userfromto.Tostop("Til");//"NSR:StopPlace:60053"

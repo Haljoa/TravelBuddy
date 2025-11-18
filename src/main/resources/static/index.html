@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TravelBuddy</title>
+</head>
+<body>
+    <h2>Search for your trip :)</h2>
+    <h3>As an example, you can paste these two stops in:</h3>
+    <h3>From here: NSR:StopPlace:2534, to here: NSR:StopPlace:60053</h3>
+
+    <label>From: <input id="fromInput"></label><br><br>
+    <label>To: <input id="toInput"></label><br><br>
+    <button onclick="searchTrip()">Search Trip</button>
+
+    <h3>Enter extra details about your trip</h3>
+    <p>The information you provide can really help other passengers</p>
+
+    <label>Total Duration (minutes): <input id="durationInput" type="number"></label><br><br>
+    <label>Crowdedness Level (1 to 10): <input id="crowdedInput" type="number" min="1" max="10"></label><br><br>
+    <label>Deviations: <input id="deviationInput" type="text"></label><br><br>
+    <button onclick="saveTrip()">Save Trip Details</button>
+
+    <h3>Result: </h3>
+    <pre id="resultBox"></pre>
+
+    <script>
+        let lastSearchResult = null;
+
+        async function searchTrip() {
+            const from = document.getElementById('fromInput').value;
+            const to = document.getElementById('toInput').value;
+            const url = `http://localhost:8080/api/trips/search?from=${from}&to=${to}`;
+            const response = await fetch(url);
+            lastSearchResult = await response.json();
+
+            document.getElementById('resultBox').textContent = JSON.stringify(lastSearchResult, null, 2);
+        }
+    </script>
+    <script>
+        async function saveTrip() {
+            if (!lastSearchResult) {
+                alert("Please search for a trip first ;)");
+                return;
+            }
+
+            const payload = {
+                routeId: lastSearchResult.routeId,
+                totalDuration: parseInt(document.getElementById('durationInput').value),
+                crowdednessLevel: parseInt(document.getElementById('crowdedInput').value),
+                deviations: document.getElementById('deviationInput').value
+            };
+
+            const response = await fetch("http://localhost:8080/api/trips/save", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            document.getElementById('resultBox').textContent = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
