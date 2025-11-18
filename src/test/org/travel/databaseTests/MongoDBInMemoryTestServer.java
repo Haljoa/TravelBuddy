@@ -42,10 +42,8 @@ public class MongoDBInMemoryTestServer {
 
         //instillinger for å koble MongoClient til in-memory databasen
         MongoClientSettings settings = MongoClientSettings.builder()
-                .applyToClusterSettings(builder ->
-                        builder.hosts(java.util.Collections.singletonList(
-                                new com.mongodb.ServerAddress("localhost", 27017)
-                        ))).codecRegistry(codecRegistry).build();
+                .applyConnectionString(new com.mongodb.ConnectionString("mongodb://localhost:27017"))
+                .codecRegistry(codecRegistry).build();
 
         //kobler til in-memory serveren
         client = MongoClients.create(settings);
