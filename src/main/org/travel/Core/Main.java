@@ -1,12 +1,5 @@
 package org.travel.Core;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import org.travel.API.GraphQLClient;
-import org.travel.Core.Domain.Journeymaker;
-import org.travel.Core.Ports.JourneyClientPort;
-
-import java.util.List;
-
 //public class Main {
 //
 //public static void main(String[] args) throws Exception {

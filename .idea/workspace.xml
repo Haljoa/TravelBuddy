@@ -5,79 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/DTO/TripUserInputDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/EnturTrip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Leg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Line.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/TripPattern.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Ports/EnturTripDataPort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Ports/JourneyClientPort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Database/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/org/travel/databaseTests/EnturTripDataAdapterTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/org/travel/databaseTests/TripDataMongoAdapterIntegrationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_11_2025_14_12_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_11_2025_14_12__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/DatabaseConnectionTester.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/JourneyDuration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/JourneyDurationInputPort.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/Route.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/RouteSearcher.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/RouteService$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/RouteService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/TripData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/TripDataMongoAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/TripDataRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/TripDataService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_11_2025_11_26__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/API/GraphQLClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/API/Travelhet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/API/UserReports.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Adapters/TripDataController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Adapters/TripDataMongoAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/DTO/NotificationData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Journeymaker.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Notification/AccessibilityNotification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Notification/BusynessNotification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Notification/CommonTripDeviationNotification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Notification/DelayNotification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Notification/DeviationNotification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Notification/Notification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Notification/NotificationType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/Notification/OnOffNotification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Domain/TripData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Ports/NotificationPort.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Ports/TripDataInputPort.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Ports/TripDataRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Service/NotificationAdapter$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Service/NotificationAdapter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Core/Service/TripDataService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/Database/MongoDBInjector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/DatabaseConnectionTester.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TravelBoody/org/travel/TravelApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/TravelBoody/org/travel/databaseTests/MongoDBInMemoryTestServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/TravelBoody/org/travel/databaseTests/TripDataIntegrationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/TravelBoody/org/travel/serviceTests/TripDataServiceTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/API/GraphQLClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/API/GraphQLClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataMongoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataMongoAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/DTO/NotificationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/DTO/NotificationData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Journeymaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Journeymaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/TripData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/TripData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Ports/TripDataRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Ports/TripDataRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/NotificationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/NotificationAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/DatabaseConnectionTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/DatabaseConnectionTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/TravelApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/TravelApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/databaseTests/MongoDBInMemoryTestServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/databaseTests/MongoDBInMemoryTestServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/databaseTests/TripDataIntegrationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/org/travel/databaseTests/EnturTripDataAdapterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/databaseTests/EnturTripDataAdapterTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/org/travel/databaseTests/TripDataMongoAdapterIntegrationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/databaseTests/TripDataMongoAdapterIntegrationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/NotificationCreationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/NotificationCreationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,8 +73,8 @@
     "Application.TravelApplication.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
     "JUnit.All in TravelBoody.executor": "Run",
-    "JUnit.NotificationCreationTest.executor": "Run",
     "JUnit.EnturTripDataAdapterTests.executor": "Run",
+    "JUnit.NotificationCreationTest.executor": "Run",
     "JUnit.TripDataControllerTests.executor": "Run",
     "JUnit.TripDataControllerTests.getRouteByIdShouldReturnTrip.executor": "Run",
     "JUnit.TripDataControllerTests.saveTripShouldReturnServerErrorWhenServiceThrowsException.executor": "Run",
@@ -139,8 +83,8 @@
     "JUnit.TripDataMongoAdapterIntegrationTests.getRouteByIdShouldReturnNullIfTripDoesNotExist.executor": "Run",
     "JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData.executor": "Run",
     "JUnit.TripDataServiceTests.executor": "Run",
-    "JUnit.databaseTests in TravelBoody.executor": "Run",
     "JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues.executor": "Run",
+    "JUnit.databaseTests in TravelBoody.executor": "Run",
     "JUnit.test in TravelBoody.executor": "Run",
     "JUnit.tests.databaseTests in TravelBoody.executor": "Run",
     "Maven.TravelBoody [org.springframework.boot:spring-boot-maven-plugin:3.3.4:run].executor": "Run",
@@ -148,7 +92,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "sammenkobling-av-entur-til-vår-database",
+    "git-widget-placeholder": "development",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests",
     "project.structure.last.edited": "Modules",
@@ -164,40 +108,7 @@
       <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.org.travel in TravelBoody">
-    <configuration name="databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TravelBoody" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="databaseTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="databaseTests" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="org.travel in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TravelBoody" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.travel.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.travel" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="tests.databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <recent name="C:\Users\O\Documents\HIOF\Software Engineering\TravelBuddy\TravelBuddy\src\main\resources\static" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.test in TravelBoody">
+  <component name="RunManager" selected="Application.TravelApplication">
     <configuration name="TravelApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.travel.TravelApplication" />
       <module name="TravelBoody" />
@@ -268,11 +179,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.org.travel in TravelBoody" />
-        <item itemvalue="JUnit.databaseTests in TravelBoody" />
-        <item itemvalue="JUnit.tests.databaseTests in TravelBoody" />
-        <item itemvalue="JUnit.test in TravelBoody" />
         <item itemvalue="Application.TravelApplication" />
+        <item itemvalue="JUnit.test in TravelBoody" />
         <item itemvalue="JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData" />
         <item itemvalue="JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues" />
         <item itemvalue="JUnit.TripDataServiceTests" />

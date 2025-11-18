@@ -1,12 +1,13 @@
 package org.travel.serviceTests;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.travel.Core.DTO.NotificationData;
 import org.travel.Core.Domain.Notification.DelayNotification;
 import org.travel.Core.Domain.Notification.Notification;
 import org.travel.Core.Domain.Notification.NotificationType;
 import org.travel.Core.Domain.Notification.OnOffNotification;
 import org.travel.Core.Service.NotificationAdapter;
-import org.travel.Core.DTO.NotificationData;
 
 
 public class NotificationCreationTest {
@@ -32,7 +33,7 @@ public class NotificationCreationTest {
         Notification DelayAdapterResult = AdapterTest.create(NotificationType.DELAY,Delaytest);
 
         //assert
-        Assertions.assertTrue(DelayAdapterResult instanceof DelayNotification);
+        Assertions.assertInstanceOf(DelayNotification.class, DelayAdapterResult);
         DelayNotification delayResult = (DelayNotification) DelayAdapterResult;
         Assertions.assertEquals(TestObject.getDescription(),delayResult.getDescription());
         Assertions.assertEquals(TestObject.getNotificationID(),delayResult.getNotificationID());
@@ -57,7 +58,7 @@ public class NotificationCreationTest {
         Notification errorResult = AdapterTest.create(NotificationType.DELAY,errorDelayTest);
 
 
-        Assertions.assertTrue(errorResult instanceof DelayNotification);
+        Assertions.assertInstanceOf(DelayNotification.class, errorResult);
         Assertions.assertEquals("error", errorResult.getDescription());
 
 
@@ -79,7 +80,7 @@ public class NotificationCreationTest {
         Notification OnOffAdapterResult = AdapterTest.create(NotificationType.ON_OFF,PublicDTOtest);
 
         //assert
-        Assertions.assertTrue(OnOffAdapterResult instanceof OnOffNotification);
+        Assertions.assertInstanceOf(OnOffNotification.class, OnOffAdapterResult);
         OnOffNotification OnOffResult = (OnOffNotification) OnOffAdapterResult;
         Assertions.assertEquals(TestObject.getDescription(),OnOffResult.getDescription());
         Assertions.assertEquals(TestObject.getNotificationID(),OnOffResult.getNotificationID());

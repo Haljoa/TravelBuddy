@@ -1,9 +1,10 @@
 package org.travel.Core.Service;
+
 import org.travel.Core.DTO.NotificationData;
 import org.travel.Core.Domain.Notification.*;
 import org.travel.Core.Ports.NotificationPort;
 
-import java.util.*;
+import java.util.HashMap;
 /**
  * Notification assembler. Creates notification objects using the data from DTO
  * gets the description from the hashmap.

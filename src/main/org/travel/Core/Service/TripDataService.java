@@ -1,10 +1,9 @@
 package org.travel.Core.Service;
 
-import org.travel.Core.Domain.TripPattern;
-import org.travel.Core.Ports.EnturTripDataPort;
-import org.travel.Core.Ports.TripDataRepository;
 import org.travel.Core.Domain.TripData;
+import org.travel.Core.Ports.EnturTripDataPort;
 import org.travel.Core.Ports.TripDataInputPort;
+import org.travel.Core.Ports.TripDataRepository;
 
 import java.util.List;
 
@@ -92,5 +91,5 @@ public class TripDataService implements TripDataInputPort {
 
         //lagrer dataen i databasen vår
         return repository.saveTripData(data);
-    };
+    }
 }

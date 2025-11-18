@@ -1,10 +1,12 @@
 package org.travel.Adapters;
+
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.travel.Core.DTO.TripUserInputDTO;
 import org.travel.Core.Domain.TripData;
 import org.travel.Core.Service.TripDataService;
-import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController

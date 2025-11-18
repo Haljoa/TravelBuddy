@@ -2,7 +2,6 @@ package org.travel.serviceTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.*;
 import org.mockito.Mockito;
 import org.travel.Core.Domain.EnturTrip;
 import org.travel.Core.Domain.TripData;
@@ -13,6 +12,7 @@ import org.travel.Core.Service.TripDataService;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 //enhets tester for service klassen
 //bruker Mockito til å "etterligne" eller "mocke" hvordan den snakker med in og out-porten.

@@ -4,16 +4,12 @@ import com.mongodb.client.MongoDatabase;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.configuration.IMockitoConfiguration;
 import org.travel.Adapters.TripDataMongoAdapter;
 import org.travel.Core.Domain.TripData;
-import org.travel.Core.Ports.TripDataRepository;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class TripDataMongoAdapterIntegrationTests {
     //henter inn in-memory test serveren til å bruke for disse testene

@@ -1,7 +1,6 @@
 package org.travel.databaseTests;
 
 import org.junit.jupiter.api.Test;
-import org.travel.API.GraphQLClient;
 import org.travel.Adapters.EnturTripDataAdapter;
 import org.travel.Core.Domain.TripData;
 import org.travel.Core.Ports.JourneyClientPort;

@@ -1,10 +1,7 @@
 package org.travel.Core.Domain;
 
-import org.apache.commons.compress.archivers.StreamingNotSupportedException;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
-
-import java.util.List;
 
 public class TripData {
     //routeId må ha BsonId og BsonProperty knyttet til den, siden dette brukes som en unik id i databasen

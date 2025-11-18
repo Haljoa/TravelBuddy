@@ -5,9 +5,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.ReplaceOptions;
-import org.travel.Core.Ports.TripDataRepository;
-import org.travel.Core.Domain.TripData;
 import org.bson.conversions.Bson;
+import org.travel.Core.Domain.TripData;
+import org.travel.Core.Ports.TripDataRepository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,4 @@
 package org.travel.Core.DTO;
-import org.travel.Core.Domain.Notification.*;
 //Notification DTO
 
 public class NotificationData {

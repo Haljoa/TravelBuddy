@@ -1,14 +1,5 @@
 package org.travel;
 
-import com.mongodb.client.MongoDatabase;
-import org.travel.Adapters.TripDataMongoAdapter;
-import org.travel.Database.MongoDBInjector;
-import org.travel.Core.Ports.TripDataRepository;
-import org.travel.Core.Domain.TripData;
-import org.travel.Core.Service.TripDataService;
-
-import java.util.List;
-
 public class DatabaseConnectionTester {
     public static void main(String[] args) {
         //bruker dependency injectoren til å sette opp tilkoblingen til databasen,
