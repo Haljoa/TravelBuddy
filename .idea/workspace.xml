@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
+    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">    </list>
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" afterDir="false" />
-=======
     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="Fikset pakkestrukturen for brukere branchen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Users/Bruker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Users/Bruker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" afterDir="false" />
->>>>>>> Brukere
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,11 +60,8 @@
     "Application.TravelApplication.executor": "Run",
     "JUnit.All in TravelBoody.executor": "Run",
     "JUnit.TripDataIntegrationTests.executor": "Run",
-<<<<<<< HEAD
     "JUnit.TripDataServiceTests.executor": "Run",
-=======
     "JUnit.databaseTests in TravelBoody.executor": "Run",
->>>>>>> Brukere
     "JUnit.tests.databaseTests in TravelBoody.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -77,7 +71,6 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests",
     "project.structure.last.edited": "Modules",
-<<<<<<< HEAD
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default"
@@ -85,13 +78,12 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="All in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-=======
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.lookFeel"
-  }
-}]]></component>
+    </configuration>
+  }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main\org\travel" />
@@ -115,7 +107,6 @@
       </method>
     </configuration>
     <configuration name="tests.databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
->>>>>>> Brukere
       <module name="TravelBoody" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
@@ -125,12 +116,9 @@
     </configuration>
     <recent_temporary>
       <list>
-<<<<<<< HEAD
         <item itemvalue="JUnit.All in TravelBoody" />
-=======
         <item itemvalue="JUnit.databaseTests in TravelBoody" />
         <item itemvalue="JUnit.tests.databaseTests in TravelBoody" />
->>>>>>> Brukere
       </list>
     </recent_temporary>
   </component>
