@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">    </list>
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" afterDir="false" />
-    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="Fikset pakkestrukturen for brukere branchen">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Users/Bruker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Users/Bruker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" afterDir="false" />
-    </list>
+    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +52,7 @@
     "Application.Main.executor": "Run",
     "Application.TravelApplication.executor": "Run",
     "JUnit.All in TravelBoody.executor": "Run",
+    "JUnit.NotificationCreationTest.executor": "Run",
     "JUnit.TripDataIntegrationTests.executor": "Run",
     "JUnit.TripDataServiceTests.executor": "Run",
     "JUnit.databaseTests in TravelBoody.executor": "Run",
@@ -67,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Brukere",
+    "git-widget-placeholder": "development",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests",
     "project.structure.last.edited": "Modules",
@@ -76,14 +70,6 @@
     "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="All in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
-    </configuration>
-  }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main\org\travel" />
@@ -91,7 +77,7 @@
       <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.databaseTests in TravelBoody">
+  <component name="RunManager" selected="JUnit.org.travel in TravelBoody">
     <configuration name="databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TravelBoody" />
       <extension name="coverage">
@@ -101,6 +87,20 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="databaseTests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.travel in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TravelBoody" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.travel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.travel" />
       <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -116,7 +116,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in TravelBoody" />
+        <item itemvalue="JUnit.org.travel in TravelBoody" />
         <item itemvalue="JUnit.databaseTests in TravelBoody" />
         <item itemvalue="JUnit.tests.databaseTests in TravelBoody" />
       </list>
