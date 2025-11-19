@@ -37,12 +37,12 @@
     &quot;assignee&quot;: &quot;mmbnnnbn&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Haljoa/TravelBuddy.git",
-    "accountId": "26c17351-ea5a-4fe7-9c07-1ded77b97e3f"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,
+    &quot;accountId&quot;: &quot;26c17351-ea5a-4fe7-9c07-1ded77b97e3f&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
