@@ -30,11 +30,16 @@
         async function searchTrip() {
             const from = document.getElementById('fromInput').value;
             const to = document.getElementById('toInput').value;
-            const url = `http://localhost:8080/api/trips/search?from=${from}&to=${to}`;
-            const response = await fetch(url);
+
+            const searchUrl = `http://localhost:8080/api/trips/search?from=${from}&to=${to}`;
+            const response = await fetch(searchUrl);
             lastSearchResult = await response.json();
 
-            document.getElementById('resultBox').textContent = JSON.stringify(lastSearchResult, null, 2);
+            const summaryUrl = `http://localhost:8080/api/trips/${lastSearchResult.routeId}/summary/text`;
+            const summaryResponse = await fetch(summaryUrl);
+            const summaryText = await summaryResponse.text();
+
+            document.getElementById('resultBox').innerText = summaryText;
         }
     </script>
     <script>
@@ -51,14 +56,16 @@
                 deviations: document.getElementById('deviationInput').value
             };
 
-            const response = await fetch("http://localhost:8080/api/trips/save", {
+            await fetch("http://localhost:8080/api/trips/save", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
+                body: JSON.stringify(payload)});
 
-            const data = await response.json();
-            document.getElementById('resultBox').textContent = JSON.stringify(data, null, 2);
+            const summaryUrl = `http://localhost:8080/api/trips/${payload.routeId}/summary/text`;
+            const summaryResponse = await fetch(summaryUrl);
+            const summaryText = await summaryResponse.text();
+
+            document.getElementById('resultBox').innerText = summaryText;
         }
     </script>
 </body>

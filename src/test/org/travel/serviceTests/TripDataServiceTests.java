@@ -198,6 +198,41 @@ public class TripDataServiceTests {
         verify(repository, times(2)).saveTripData(existingTrip);
     }
 
+    //sjekker at getHumanReadableSummary returnerer data fra formatereren
+    @Test
+    void getHumanReadableSummaryShouldReturnDataFromFormatter() {
+        //arrange
+        TripDataRepository repo = mock(TripDataRepository.class);
+        EnturTripDataPort entur = mock(EnturTripDataPort.class);
+        TripDataService tripDataService = new TripDataService(repo, entur);
+        TripData mockTrip = new TripData();
+        mockTrip.setTotalRouteDuration(5);
+        mockTrip.setCrowdednessLevel(5);
+        mockTrip.setDeviations("none");
+        //stubber en respons
+        when(repo.getRouteById("a - b")).thenReturn(mockTrip);
+
+        //act
+        List<String> result = tripDataService.getHumanReadableSummary("a - b");
+
+        //assert
+        assertNotNull(result);
+        assertTrue(result.size() > 0);
+    }
+
+    @Test
+    void getHumanReadableSummaryThrowsExceptionWhenTripIsMissing() {
+        //arrange
+        TripDataRepository repo = mock(TripDataRepository.class);
+        EnturTripDataPort entur = mock(EnturTripDataPort.class);
+        TripDataService tripDataService = new TripDataService(repo, entur);
+        //stubber en respons
+        when(repo.getRouteById("a")).thenReturn(null);
+
+        //act og assert
+        assertThrows(IllegalArgumentException.class, () -> tripDataService.getHumanReadableSummary("a"));
+    }
+
     //Tester edge-cases under her.
     //mange av disse trenger ikke hele arrange, act, assert formatet, siden de ikke trenger hele set-uppet som
     //testene ovenfor f.eks. De går fortsatt gjennom stegene, for det meste act og assert, i løpet av testene,

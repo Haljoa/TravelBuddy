@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]/shelved.patch" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/HumanRedableTripFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/HumanReadableTripFormatterTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,41 +58,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DatabaseConnectionTester.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TravelApplication.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JUnit.All in TravelBoody.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EnturTripDataAdapterTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.NotificationCreationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataControllerTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataControllerTests.getRouteByIdShouldReturnTrip.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataControllerTests.saveTripShouldReturnServerErrorWhenServiceThrowsException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataIntegrationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataMongoAdapterIntegrationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataMongoAdapterIntegrationTests.getRouteByIdShouldReturnNullIfTripDoesNotExist.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataServiceTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.databaseTests in TravelBoody.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.test in TravelBoody.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tests.databaseTests in TravelBoody.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.TravelBoody [org.springframework.boot:spring-boot-maven-plugin:3.3.4:run].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DatabaseConnectionTester.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.TravelApplication.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.All in TravelBoody.executor": "Run",
+    "JUnit.EnturTripDataAdapterTests.executor": "Run",
+    "JUnit.HumanReadableTripFormatterTests.executor": "Run",
+    "JUnit.HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull.executor": "Run",
+    "JUnit.NotificationCreationTest.executor": "Run",
+    "JUnit.TripDataControllerTests.executor": "Run",
+    "JUnit.TripDataControllerTests.getRouteByIdShouldReturnTrip.executor": "Run",
+    "JUnit.TripDataControllerTests.saveTripShouldReturnServerErrorWhenServiceThrowsException.executor": "Run",
+    "JUnit.TripDataIntegrationTests.executor": "Run",
+    "JUnit.TripDataMongoAdapterIntegrationTests.executor": "Run",
+    "JUnit.TripDataMongoAdapterIntegrationTests.getRouteByIdShouldReturnNullIfTripDoesNotExist.executor": "Run",
+    "JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData.executor": "Run",
+    "JUnit.TripDataServiceTests.executor": "Run",
+    "JUnit.TripDataServiceTests.getHumanReadableSummaryShouldReturnDataFromFormatter.executor": "Run",
+    "JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues.executor": "Run",
+    "JUnit.databaseTests in TravelBoody.executor": "Run",
+    "JUnit.test in TravelBoody.executor": "Run",
+    "JUnit.tests.databaseTests in TravelBoody.executor": "Run",
+    "Maven.TravelBoody [org.springframework.boot:spring-boot-maven-plugin:3.3.4:run].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "human-friendly-data",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main\org\travel" />
@@ -93,7 +103,7 @@
       <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TravelApplication">
+  <component name="RunManager" selected="JUnit.HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull">
     <configuration name="TravelApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.travel.TravelApplication" />
       <module name="TravelBoody" />
@@ -107,23 +117,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TravelBoody" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.travel.databaseTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.travel.databaseTests" />
-      <option name="MAIN_CLASS_NAME" value="org.travel.databaseTests.TripDataMongoAdapterIntegrationTests" />
-      <option name="METHOD_NAME" value="saveAndGetTripShouldReturnTheSameData" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TripDataServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HumanReadableTripFormatterTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TravelBoody" />
       <extension name="coverage">
         <pattern>
@@ -132,13 +126,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.travel.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="org.travel.serviceTests.TripDataServiceTests" />
+      <option name="MAIN_CLASS_NAME" value="org.travel.serviceTests.HumanReadableTripFormatterTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TravelBoody" />
       <extension name="coverage">
         <pattern>
@@ -147,9 +141,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.travel.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="org.travel.serviceTests.TripDataServiceTests" />
-      <option name="METHOD_NAME" value="saveUserTripDataShouldAcceptCrowdednessBoundaryValues" />
+      <option name="MAIN_CLASS_NAME" value="org.travel.serviceTests.HumanReadableTripFormatterTests" />
+      <option name="METHOD_NAME" value="toHumanReadableReturnsMessageWhenReceivedDataIsNull" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TripDataControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TravelBoody" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.travel.controllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.travel.controllerTests" />
+      <option name="MAIN_CLASS_NAME" value="org.travel.controllerTests.TripDataControllerTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull" />
         <item itemvalue="Application.TravelApplication" />
         <item itemvalue="JUnit.test in TravelBoody" />
-        <item itemvalue="JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData" />
-        <item itemvalue="JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues" />
-        <item itemvalue="JUnit.TripDataServiceTests" />
+        <item itemvalue="JUnit.TripDataControllerTests" />
+        <item itemvalue="JUnit.HumanReadableTripFormatterTests" />
       </list>
     </recent_temporary>
   </component>

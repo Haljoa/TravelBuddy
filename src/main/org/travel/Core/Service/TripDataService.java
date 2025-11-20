@@ -1,5 +1,6 @@
 package org.travel.Core.Service;
 
+import org.travel.Core.Domain.HumanRedableTripFormatter;
 import org.travel.Core.Domain.TripData;
 import org.travel.Core.Ports.EnturTripDataPort;
 import org.travel.Core.Ports.TripDataInputPort;
@@ -91,5 +92,13 @@ public class TripDataService implements TripDataInputPort {
 
         //lagrer dataen i databasen vår
         return repository.saveTripData(data);
+    }
+
+    public List<String> getHumanReadableSummary(String routeId) {
+        TripData trip = repository.getRouteById(routeId);
+        if (trip == null) {
+            throw new IllegalArgumentException("Trip not found.");
+        }
+        return HumanRedableTripFormatter.toHumanReadable(trip);
     }
 }

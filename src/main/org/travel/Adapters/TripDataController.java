@@ -38,6 +38,12 @@ public class TripDataController {
         return tripDataService.getOrFetchTrip(from, to);
     }
 
+    //get endpoint for resultatet av søket, formatert på en menneske vennlig måte
+    @GetMapping(value = "/{routeId}/summary/text", produces = "text/plain")
+    public String getHumanReadableData(@PathVariable String routeId) {
+        return String.join("\n", tripDataService.getHumanReadableSummary(routeId));
+    }
+
     //POST-requests
     @PostMapping
     public String createTrip(@RequestBody TripData tripData) {
