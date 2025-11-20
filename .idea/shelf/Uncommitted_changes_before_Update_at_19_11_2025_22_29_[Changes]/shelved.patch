@@ -1,0 +1,868 @@
+Index: src/main/org/travel/frontend/script.js
+===================================================================
+diff --git a/src/main/org/travel/frontend/script.js b/src/main/org/travel/frontend/script.js
+deleted file mode 100644
+--- a/src/main/org/travel/frontend/script.js	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
++++ /dev/null	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
+@@ -1,212 +0,0 @@
+-const API_BASE = 'http://localhost:8080/api/trips';
+-
+-// Søk etter spesifikk trip
+-async function searchTrip() {
+-    const routeId = document.getElementById('searchInput').value.trim();
+-    const resultDiv = document.getElementById('searchResult');
+-    
+-    if (!routeId) {
+-        resultDiv.innerHTML = '<p class="error">Vennligst skriv inn en Route ID</p>';
+-        return;
+-    }
+-    
+-    resultDiv.innerHTML = '<p class="loading">Søker...</p>';
+-    
+-    try {
+-        const response = await fetch(`${API_BASE}/${routeId}`);
+-        
+-        if (!response.ok) {
+-            throw new Error('Rute ikke funnet');
+-        }
+-        
+-        const trip = await response.json();
+-        displayTripResult(trip, resultDiv);
+-        
+-    } catch (error) {
+-        resultDiv.innerHTML = `
+-            <div class="error">
+-                <p><strong>Feil:</strong> ${error.message}</p>
+-                <p>Prøv en annen Route ID</p>
+-            </div>
+-        `;
+-    }
+-}
+-
+-// Hjelpefunksjon for crowdedness badge
+-function getCrowdednessBadge(level) {
+-    if (level <= 3) return 'crowdedness-low';
+-    if (level <= 7) return 'crowdedness-medium';
+-    return 'crowdedness-high';
+-}
+-
+-function getCrowdednessText(level) {
+-    if (level <= 3) return 'Lav';
+-    if (level <= 7) return 'Middels';
+-    return 'Høy';
+-}
+-
+-// Vis søkeresultat
+-function displayTripResult(trip, container) {
+-    const crowdednessClass = getCrowdednessBadge(trip.crowdednessLevel);
+-    const crowdednessText = getCrowdednessText(trip.crowdednessLevel);
+-    
+-    container.innerHTML = `
+-        <div class="trip-card">
+-            <div class="trip-header">
+-                <span class="route-id">${trip.routeId}</span>
+-                <span class="crowdedness-badge ${crowdednessClass}">
+-                    Travlhet: ${crowdednessText} (${trip.crowdednessLevel})
+-                </span>
+-            </div>
+-            
+-            <div class="trip-details">
+-                <div class="detail-item">⏱️ <strong>Total varighet:</strong> ${trip.totalRouteDuration} minutter</div>
+-                <div class="detail-item">👥 <strong>Travlhetsnivå:</strong> ${trip.crowdednessLevel}/10</div>
+-            </div>
+-            
+-            ${trip.durationsBetweenStops && trip.durationsBetweenStops.length > 0 ? `
+-                <div class="durations-list">
+-                    <h4>⏰ Varighet mellom stopp:</h4>
+-                    <div>${trip.durationsBetweenStops.join(' → ')} minutter</div>
+-                </div>
+-            ` : ''}
+-            
+-            ${trip.deviations ? `
+-                <div class="deviations">
+-                    <h4>⚠️ Avvik:</h4>
+-                    <div>${trip.deviations}</div>
+-                </div>
+-            ` : ''}
+-        </div>
+-    `;
+-}
+-
+-// Legg til ny trip
+-async function addNewTrip() {
+-    const durationsText = document.getElementById('newDurations').value.trim();
+-    const durationsBetweenStops = durationsText ? 
+-        durationsText.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num)) : 
+-        [];
+-    
+-    const newTrip = {
+-        routeId: document.getElementById('newRouteId').value.trim(),
+-        totalRouteDuration: parseInt(document.getElementById('newTotalDuration').value) || 0,
+-        crowdednessLevel: parseFloat(document.getElementById('newCrowdedness').value) || 0,
+-        deviations: document.getElementById('newDeviations').value.trim() || null,
+-        durationsBetweenStops: durationsBetweenStops
+-    };
+-    
+-    if (!newTrip.routeId || !newTrip.totalRouteDuration) {
+-        alert('Vennligst fyll ut Route ID og Total varighet');
+-        return;
+-    }
+-    
+-    if (newTrip.crowdednessLevel < 0 || newTrip.crowdednessLevel > 10) {
+-        alert('Travlhetsnivå må være mellom 0 og 10');
+-        return;
+-    }
+-    
+-    try {
+-        const response = await fetch(API_BASE, {
+-            method: 'POST',
+-            headers: {
+-                'Content-Type': 'application/json',
+-            },
+-            body: JSON.stringify(newTrip)
+-        });
+-        
+-        const result = await response.text();
+-        
+-        document.getElementById('searchResult').innerHTML = `
+-            <div class="success">
+-                <p><strong>Suksess!</strong> ${result}</p>
+-            </div>
+-        `;
+-        
+-        // Reset skjema
+-        document.getElementById('newRouteId').value = '';
+-        document.getElementById('newTotalDuration').value = '';
+-        document.getElementById('newCrowdedness').value = '';
+-        document.getElementById('newDeviations').value = '';
+-        document.getElementById('newDurations').value = '';
+-        
+-        // Oppdater listen
+-        loadAllTrips();
+-        
+-    } catch (error) {
+-        document.getElementById('searchResult').innerHTML = `
+-            <div class="error">
+-                <p><strong>Feil ved lagring:</strong> ${error.message}</p>
+-            </div>
+-        `;
+-    }
+-}
+-
+-// Last alle trips
+-async function loadAllTrips() {
+-    const container = document.getElementById('allTripsList');
+-    container.innerHTML = '<p class="loading">Laster alle ruter...</p>';
+-    
+-    try {
+-        const response = await fetch(API_BASE);
+-        const trips = await response.json();
+-        
+-        if (trips.length === 0) {
+-            container.innerHTML = '<p class="placeholder">Ingen ruter funnet. Legg til noen!</p>';
+-            return;
+-        }
+-        
+-        container.innerHTML = trips.map(trip => {
+-            const crowdednessClass = getCrowdednessBadge(trip.crowdednessLevel);
+-            const crowdednessText = getCrowdednessText(trip.crowdednessLevel);
+-            
+-            return `
+-                <div class="trip-card">
+-                    <div class="trip-header">
+-                        <span class="route-id">${trip.routeId}</span>
+-                        <span class="crowdedness-badge ${crowdednessClass}">
+-                            ${crowdednessText}
+-                        </span>
+-                    </div>
+-                    
+-                    <div class="trip-details">
+-                        <div class="detail-item">⏱️ <strong>Varighet:</strong> ${trip.totalRouteDuration} min</div>
+-                        <div class="detail-item">👥 <strong>Travlhet:</strong> ${trip.crowdednessLevel}/10</div>
+-                    </div>
+-                    
+-                    ${trip.durationsBetweenStops && trip.durationsBetweenStops.length > 0 ? `
+-                        <div style="font-size: 0.9em; color: #666;">
+-                            <strong>Stopp:</strong> ${trip.durationsBetweenStops.length} stopp
+-                        </div>
+-                    ` : ''}
+-                    
+-                    ${trip.deviations ? `
+-                        <div style="color: #e74c3c; font-size: 0.9em; margin-top: 8px;">
+-                            ⚠️ ${trip.deviations}
+-                        </div>
+-                    ` : ''}
+-                </div>
+-            `;
+-        }).join('');
+-        
+-    } catch (error) {
+-        container.innerHTML = `
+-            <div class="error">
+-                <p><strong>Feil ved lasting:</strong> ${error.message}</p>
+-                <p>Sjekk at backend kjører på localhost:8080</p>
+-            </div>
+-        `;
+-    }
+-}
+-
+-// Søk når bruker trykker Enter
+-document.getElementById('searchInput').addEventListener('keypress', function(e) {
+-    if (e.key === 'Enter') {
+-        searchTrip();
+-    }
+-});
+-
+-// Last alle trips når siden loader
+-document.addEventListener('DOMContentLoaded', function() {
+-    loadAllTrips();
+-});
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]/shelved.patch	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
++++ /dev/null	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
+@@ -1,72 +0,0 @@
+-Index: src/tests/databaseTests/TripDataIntegrationTests.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package tests.databaseTests;\r\n\r\nimport com.mongodb.client.MongoDatabase;\r\nimport main.java.org.travel.Adapters.TripDataMongoAdapter;\r\nimport main.java.org.travel.core.Ports.TripDataInputPort;\r\nimport main.java.org.travel.core.domain.TripData;\r\nimport main.java.org.travel.core.service.TripDataService;\r\nimport org.junit.jupiter.api.AfterAll;\r\nimport org.junit.jupiter.api.Assertions;\r\nimport org.junit.jupiter.api.BeforeAll;\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\npublic class TripDataIntegrationTests {\r\n    //bruker test-serveren\r\n    private static MongoDBInMemoryTestServer server;\r\n    //bruker in-porten som inngangs punkt\r\n    private static TripDataInputPort service;\r\n\r\n    @BeforeAll\r\n    static void setup() throws Exception {\r\n        //starter in-memory serveren\r\n        server = new MongoDBInMemoryTestServer();\r\n        MongoDatabase database = server.start();\r\n        //kobler adapteren til in-memory databasen\r\n        TripDataMongoAdapter adapter =  new TripDataMongoAdapter(database);\r\n        //kobler sammen adapteren til service klassen via in-porten\r\n        service = new TripDataService(adapter);\r\n        //test koden her vil da bevege seg til service klassen via in-porten,\r\n        //deretter til adapteren gjennom out-porten, og til in-memory test serveren.\r\n    }\r\n\r\n    @AfterAll\r\n    static void teardown() {\r\n        //stenger databasen etter testene\r\n        server.stop();\r\n    }\r\n\r\n    @Test\r\n    void testingSaveAndGetTrips() {\r\n        //arrange\r\n        TripData trip = new TripData(\r\n                \"Route1\", 25, Arrays.asList(2, 12, 5, 6), 0.8, \"Some Traffic\"\r\n        );\r\n\r\n        //act\r\n        //lagrer denne til in-memory databasen via in-porten og service\r\n        service.saveTripData(trip);\r\n        //henter denne fra DB basert på IDen\r\n        TripData gotById = service.getRouteById(\"Route1\");\r\n\r\n        //assert\r\n        Assertions.assertNotNull(gotById);\r\n        Assertions.assertEquals(\"Route1\", gotById.getRouteId());\r\n        Assertions.assertEquals(25, gotById.getTotalRouteDuration());\r\n        Assertions.assertEquals(List.of(2, 12, 5, 6), gotById.getDurationsBetweenStops());\r\n        Assertions.assertEquals(0.8, gotById.getCrowdednessLevel());\r\n        Assertions.assertEquals(\"Some Traffic\", gotById.getDeviations());\r\n    }\r\n\r\n    @Test\r\n    void testingGetAllTrips() {\r\n        //arrange\r\n        TripData trip1 = new TripData(\r\n                \"Route2\", 20, List.of(2, 5, 5, 12, 4), 0.3,\r\n                \"Loud man shouting at people\");\r\n        TripData trip2 = new TripData(\r\n                \"Route3\", 39, List.of(12, 2, 4, 15, 6), 0.6,\r\n                \"Driver playing loud music and singing\");\r\n\r\n        service.saveTripData(trip1);\r\n        service.saveTripData(trip2);\r\n\r\n        //act\r\n        List<TripData> allTrips = service.getAllTrips();\r\n\r\n        //assert\r\n        Assertions.assertEquals(3, allTrips.size());\r\n        //ser om rutene faktisk ligger i listen\r\n        Assertions.assertTrue(allTrips.stream().anyMatch(t -> t.getRouteId().equals(\"Route2\")));\r\n        Assertions.assertTrue(allTrips.stream().anyMatch(t -> t.getRouteId().equals(\"Route3\")));\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/tests/databaseTests/TripDataIntegrationTests.java b/src/tests/databaseTests/TripDataIntegrationTests.java
+---- a/src/tests/databaseTests/TripDataIntegrationTests.java	(revision bfaec18cc9fbbd1e89b38b883f7c3f63975a0db8)
+-+++ b/src/tests/databaseTests/TripDataIntegrationTests.java	(date 1762785339766)
+-@@ -1,10 +1,10 @@
+- package tests.databaseTests;
+- 
+- import com.mongodb.client.MongoDatabase;
+--import main.java.org.travel.Adapters.TripDataMongoAdapter;
+--import main.java.org.travel.core.Ports.TripDataInputPort;
+--import main.java.org.travel.core.domain.TripData;
+--import main.java.org.travel.core.service.TripDataService;
+-+import org.travel.Adapters.TripDataMongoAdapter;
+-+import org.travel.Core.Ports.TripDataInputPort;
+-+import org.travel.Core.Domain.TripData;
+-+import org.travel.Core.Service.TripDataService;
+- import org.junit.jupiter.api.AfterAll;
+- import org.junit.jupiter.api.Assertions;
+- import org.junit.jupiter.api.BeforeAll;
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9d10be3e-fd36-4f5a-a41e-0ab631a7e786\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mmbnnnbn&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,\r\n    &quot;accountId&quot;: &quot;739821b0-9818-4270-8fbb-120d6287f060&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3580LKHUwbNxxAJyp1w66rhTzTI\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.DatabaseConnectionTester.executor\": \"Run\",\r\n    \"Application.TravelApplication.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"development\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\"\r\n  }\r\n}]]></component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9d10be3e-fd36-4f5a-a41e-0ab631a7e786\" name=\"Changes\" comment=\"\" />\r\n      <created>1762476334703</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1762476334703</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"god i fucking hate git\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762784818563</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762784818563</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"god i fucking hate git\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"god i fucking hate git\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision bfaec18cc9fbbd1e89b38b883f7c3f63975a0db8)
+-+++ b/.idea/workspace.xml	(date 1762785224067)
+-@@ -4,11 +4,7 @@
+-     <option name="autoReloadType" value="SELECTIVE" />
+-   </component>
+-   <component name="ChangeListManager">
+--    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
+--      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Ports/NotificationPort.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/Core/Service/NotificationAdapter.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/travel/DatabaseConnectionTester.java" afterDir="false" />
+--    </list>
+-+    <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="aaaaaaaaaaaaaaaaaaaaaa" />
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-@@ -75,11 +71,20 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1762784818563</updated>
+-     </task>
+--    <option name="localTasksCounter" value="2" />
+-+    <task id="LOCAL-00002" summary="aaaaaaaaaaaaaaaaaaaaaa">
+-+      <option name="closed" value="true" />
+-+      <created>1762785119929</created>
+-+      <option name="number" value="00002" />
+-+      <option name="presentableId" value="LOCAL-00002" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1762785119929</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="3" />
+-     <servers />
+-   </component>
+-   <component name="VcsManagerConfiguration">
+-     <MESSAGE value="god i fucking hate git" />
+--    <option name="LAST_COMMIT_MESSAGE" value="god i fucking hate git" />
+-+    <MESSAGE value="aaaaaaaaaaaaaaaaaaaaaa" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="aaaaaaaaaaaaaaaaaaaaaa" />
+-   </component>
+- </project>
+-\ No newline at end of file
+Index: src/main/org/travel/frontend/style.css
+===================================================================
+diff --git a/src/main/org/travel/frontend/style.css b/src/main/org/travel/frontend/style.css
+deleted file mode 100644
+--- a/src/main/org/travel/frontend/style.css	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
++++ /dev/null	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
+@@ -1,247 +0,0 @@
+-* {
+-    margin: 0;
+-    padding: 0;
+-    box-sizing: border-box;
+-}
+-
+-body {
+-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+-    min-height: 100vh;
+-    padding: 20px;
+-}
+-
+-.container {
+-    max-width: 1200px;
+-    margin: 0 auto;
+-    background: white;
+-    border-radius: 15px;
+-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+-    overflow: hidden;
+-}
+-
+-header {
+-    background: linear-gradient(135deg, #2c3e50, #34495e);
+-    color: white;
+-    padding: 30px;
+-    text-align: center;
+-}
+-
+-header h1 {
+-    font-size: 2.5em;
+-    margin-bottom: 10px;
+-}
+-
+-header p {
+-    opacity: 0.9;
+-    font-size: 1.1em;
+-}
+-
+-.search-section, .results-section, .add-section, .all-trips-section {
+-    padding: 30px;
+-    border-bottom: 1px solid #eee;
+-}
+-
+-h2 {
+-    color: #2c3e50;
+-    margin-bottom: 20px;
+-    font-size: 1.5em;
+-    display: flex;
+-    justify-content: space-between;
+-    align-items: center;
+-}
+-
+-.search-box {
+-    display: flex;
+-    gap: 10px;
+-    max-width: 500px;
+-}
+-
+-input, textarea, button {
+-    padding: 12px 15px;
+-    border: 2px solid #ddd;
+-    border-radius: 8px;
+-    font-size: 16px;
+-    transition: all 0.3s ease;
+-}
+-
+-input:focus, textarea:focus {
+-    outline: none;
+-    border-color: #667eea;
+-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+-}
+-
+-button {
+-    background: linear-gradient(135deg, #667eea, #764ba2);
+-    color: white;
+-    border: none;
+-    cursor: pointer;
+-    font-weight: 600;
+-}
+-
+-button:hover {
+-    transform: translateY(-2px);
+-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+-}
+-
+-.form {
+-    display: grid;
+-    grid-template-columns: 1fr 1fr;
+-    gap: 15px;
+-    max-width: 800px;
+-}
+-
+-.form textarea {
+-    grid-column: 1 / -1;
+-    height: 80px;
+-    resize: vertical;
+-}
+-
+-.result-card {
+-    background: #f8f9fa;
+-    border-radius: 10px;
+-    padding: 20px;
+-    border-left: 5px solid #667eea;
+-}
+-
+-.placeholder {
+-    color: #6c757d;
+-    font-style: italic;
+-    text-align: center;
+-    padding: 20px;
+-}
+-
+-.trip-card {
+-    background: white;
+-    border: 1px solid #e9ecef;
+-    border-radius: 10px;
+-    padding: 20px;
+-    margin-bottom: 15px;
+-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+-    transition: transform 0.2s ease;
+-}
+-
+-.trip-card:hover {
+-    transform: translateY(-2px);
+-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+-}
+-
+-.trip-header {
+-    display: flex;
+-    justify-content: space-between;
+-    align-items: center;
+-    margin-bottom: 15px;
+-}
+-
+-.route-id {
+-    background: #667eea;
+-    color: white;
+-    padding: 6px 15px;
+-    border-radius: 20px;
+-    font-size: 0.9em;
+-    font-weight: bold;
+-}
+-
+-.crowdedness-badge {
+-    background: #ff6b6b;
+-    color: white;
+-    padding: 4px 12px;
+-    border-radius: 15px;
+-    font-size: 0.8em;
+-    font-weight: bold;
+-}
+-
+-.crowdedness-low { background: #51cf66; }
+-.crowdedness-medium { background: #fcc419; }
+-.crowdedness-high { background: #ff6b6b; }
+-
+-.trip-details {
+-    display: grid;
+-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+-    gap: 15px;
+-    margin: 15px 0;
+-}
+-
+-.detail-item {
+-    display: flex;
+-    align-items: center;
+-    gap: 8px;
+-    color: #6c757d;
+-}
+-
+-.detail-item strong {
+-    color: #2c3e50;
+-}
+-
+-.durations-list {
+-    background: #f8f9fa;
+-    padding: 10px;
+-    border-radius: 5px;
+-    margin: 10px 0;
+-}
+-
+-.durations-list h4 {
+-    margin-bottom: 5px;
+-    color: #495057;
+-}
+-
+-.deviations {
+-    background: #fff3cd;
+-    border: 1px solid #ffeaa7;
+-    border-radius: 5px;
+-    padding: 10px;
+-    margin-top: 10px;
+-}
+-
+-.deviations h4 {
+-    color: #856404;
+-    margin-bottom: 5px;
+-}
+-
+-.error {
+-    background: #f8d7da;
+-    color: #721c24;
+-    border-left: 5px solid #dc3545;
+-    padding: 15px;
+-    border-radius: 5px;
+-}
+-
+-.success {
+-    background: #d1edff;
+-    color: #155724;
+-    border-left: 5px solid #28a745;
+-    padding: 15px;
+-    border-radius: 5px;
+-}
+-
+-.loading {
+-    text-align: center;
+-    color: #667eea;
+-    padding: 20px;
+-}
+-
+-.trips-grid {
+-    display: grid;
+-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+-    gap: 20px;
+-}
+-
+-@media (max-width: 768px) {
+-    .form {
+-        grid-template-columns: 1fr;
+-    }
+-    
+-    .search-box {
+-        flex-direction: column;
+-    }
+-    
+-    .trips-grid {
+-        grid-template-columns: 1fr;
+-    }
+-    
+-    h2 {
+-        flex-direction: column;
+-        align-items: flex-start;
+-        gap: 10px;
+-    }
+-}
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24__Changes_.xml	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
++++ /dev/null	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]" date="1762853062044" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 11/11/2025 10:24 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35__Changes_.xml	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
++++ /dev/null	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]" date="1762785353864" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 10/11/2025 15:35 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: src/main/org/travel/frontend/index.html
+===================================================================
+diff --git a/src/main/org/travel/frontend/index.html b/src/main/org/travel/frontend/index.html
+deleted file mode 100644
+--- a/src/main/org/travel/frontend/index.html	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
++++ /dev/null	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
+@@ -1,57 +0,0 @@
+-<!DOCTYPE html>
+-<html lang="no">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Travel Trip Analytics</title>
+-    <link rel="stylesheet" href="style.css">
+-</head>
+-<body>
+-    <div class="container">
+-        <header>
+-            <h1>🚌 Travel Trip Analytics</h1>
+-            <p>Overvåk rute-data og avvik</p>
+-        </header>
+-
+-        <!-- Søkeboks -->
+-        <div class="search-section">
+-            <h2>Søk etter Rute</h2>
+-            <div class="search-box">
+-                <input type="text" id="searchInput" placeholder="Skriv Route ID (f.eks. RUTE_001)">
+-                <button onclick="searchTrip()">Søk</button>
+-            </div>
+-        </div>
+-
+-        <!-- Resultat visning -->
+-        <div class="results-section">
+-            <h2>Søkeresultat</h2>
+-            <div id="searchResult" class="result-card">
+-                <p class="placeholder">Skriv en Route ID og klikk søk</p>
+-            </div>
+-        </div>
+-
+-        <!-- Legg til ny trip -->
+-        <div class="add-section">
+-            <h2>Legg til ny Rute</h2>
+-            <div class="form">
+-                <input type="text" id="newRouteId" placeholder="Route ID*" required>
+-                <input type="number" id="newTotalDuration" placeholder="Total varighet (minutter)*" required>
+-                <input type="number" id="newCrowdedness" placeholder="Travlhetsnivå (0-10)*" step="0.1" min="0" max="10" required>
+-                <input type="text" id="newDeviations" placeholder="Avvik (f.eks. 'Forsinkelse')">
+-                <textarea id="newDurations" placeholder="Varighet mellom stopp (kommaseparert, f.eks. 5,10,15)"></textarea>
+-                <button onclick="addNewTrip()">Legg til Rute</button>
+-            </div>
+-        </div>
+-
+-        <!-- Alle trips -->
+-        <div class="all-trips-section">
+-            <h2>Alle Ruter <button onclick="loadAllTrips()">Oppdater Liste</button></h2>
+-            <div id="allTripsList" class="trips-grid">
+-                <p class="placeholder">Klikk "Oppdater Liste" for å se alle ruter</p>
+-            </div>
+-        </div>
+-    </div>
+-
+-    <script src="script.js"></script>
+-</body>
+-</html>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]/shelved.patch	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
++++ /dev/null	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
+@@ -1,77 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9d10be3e-fd36-4f5a-a41e-0ab631a7e786\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mmbnnnbn&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,\r\n    &quot;accountId&quot;: &quot;26c17351-ea5a-4fe7-9c07-1ded77b97e3f&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3580LKHUwbNxxAJyp1w66rhTzTI\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.DatabaseConnectionTester.executor\": \"Run\",\r\n    \"Application.TravelApplication.executor\": \"Run\",\r\n    \"JUnit.TripDataIntegrationTests.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"development\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"tests.databaseTests in TravelBoody\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TravelBoody\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"tests.databaseTests.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"tests.databaseTests\" />\r\n      <option name=\"TEST_OBJECT\" value=\"package\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.tests.databaseTests in TravelBoody\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9d10be3e-fd36-4f5a-a41e-0ab631a7e786\" name=\"Changes\" comment=\"\" />\r\n      <created>1762476334703</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1762476334703</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"god i fucking hate git\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762784818563</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762784818563</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"god i fucking hate git\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"god i fucking hate git\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision df804af853e87b92e8136737b0f68adb9a458ae3)
+-+++ b/.idea/workspace.xml	(date 1762792127610)
+-@@ -5,7 +5,7 @@
+-   </component>
+-   <component name="ChangeListManager">
+-     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
+--      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -42,23 +42,23 @@
+-     <option name="hideEmptyMiddlePackages" value="true" />
+-     <option name="showLibraryContents" value="true" />
+-   </component>
+--  <component name="PropertiesComponent"><![CDATA[{
+--  "keyToString": {
+--    "Application.DatabaseConnectionTester.executor": "Run",
+--    "Application.TravelApplication.executor": "Run",
+--    "JUnit.TripDataIntegrationTests.executor": "Run",
+--    "ModuleVcsDetector.initialDetectionPerformed": "true",
+--    "RunOnceActivity.ShowReadmeOnStart": "true",
+--    "RunOnceActivity.git.unshallow": "true",
+--    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+--    "git-widget-placeholder": "development",
+--    "kotlin-language-version-configured": "true",
+--    "project.structure.last.edited": "Modules",
+--    "project.structure.proportion": "0.0",
+--    "project.structure.side.proportion": "0.0",
+--    "run.code.analysis.last.selected.profile": "pProject Default"
+-+  <component name="PropertiesComponent">{
+-+  &quot;keyToString&quot;: {
+-+    &quot;Application.DatabaseConnectionTester.executor&quot;: &quot;Run&quot;,
+-+    &quot;Application.TravelApplication.executor&quot;: &quot;Run&quot;,
+-+    &quot;JUnit.TripDataIntegrationTests.executor&quot;: &quot;Run&quot;,
+-+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-+    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+-+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+-   }
+--}]]></component>
+-+}</component>
+-   <component name="RunManager">
+-     <configuration name="tests.databaseTests in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-       <module name="TravelBoody" />
+-@@ -99,6 +99,17 @@
+-     </task>
+-     <option name="localTasksCounter" value="2" />
+-     <servers />
+-+  </component>
+-+  <component name="Vcs.Log.Tabs.Properties">
+-+    <option name="TAB_STATES">
+-+      <map>
+-+        <entry key="MAIN">
+-+          <value>
+-+            <State />
+-+          </value>
+-+        </entry>
+-+      </map>
+-+    </option>
+-   </component>
+-   <component name="VcsManagerConfiguration">
+-     <MESSAGE value="god i fucking hate git" />
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9d10be3e-fd36-4f5a-a41e-0ab631a7e786\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/README.md\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/README.md\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataMongoAdapter.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataMongoAdapter.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Core/DTO/NotificationData.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Core/DTO/NotificationData.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Core/Domain/Journeymaker.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Core/Domain/Journeymaker.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Core/Domain/TripData.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Core/Domain/TripData.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Core/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Core/Main.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Core/Service/NotificationAdapter.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Core/Service/NotificationAdapter.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/org/travel/DatabaseConnectionTester.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/org/travel/DatabaseConnectionTester.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/org/travel/databaseTests/EnturTripDataAdapterTests.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/org/travel/databaseTests/EnturTripDataAdapterTests.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/org/travel/databaseTests/TripDataMongoAdapterIntegrationTests.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/org/travel/databaseTests/TripDataMongoAdapterIntegrationTests.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/org/travel/serviceTests/NotificationCreationTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/org/travel/serviceTests/NotificationCreationTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"development\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mmbnnnbn&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,\r\n    &quot;accountId&quot;: &quot;e041e7da-4a8c-492c-9dac-e6823cdd0efc&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3580LKHUwbNxxAJyp1w66rhTzTI\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.DatabaseConnectionTester.executor\": \"Run\",\r\n    \"Application.Main.executor\": \"Run\",\r\n    \"Application.TravelApplication.executor\": \"Run\",\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"JUnit.All in TravelBoody.executor\": \"Run\",\r\n    \"JUnit.EnturTripDataAdapterTests.executor\": \"Run\",\r\n    \"JUnit.NotificationCreationTest.executor\": \"Run\",\r\n    \"JUnit.TripDataControllerTests.executor\": \"Run\",\r\n    \"JUnit.TripDataControllerTests.getRouteByIdShouldReturnTrip.executor\": \"Run\",\r\n    \"JUnit.TripDataControllerTests.saveTripShouldReturnServerErrorWhenServiceThrowsException.executor\": \"Run\",\r\n    \"JUnit.TripDataIntegrationTests.executor\": \"Run\",\r\n    \"JUnit.TripDataMongoAdapterIntegrationTests.executor\": \"Run\",\r\n    \"JUnit.TripDataMongoAdapterIntegrationTests.getRouteByIdShouldReturnNullIfTripDoesNotExist.executor\": \"Run\",\r\n    \"JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData.executor\": \"Run\",\r\n    \"JUnit.TripDataServiceTests.executor\": \"Run\",\r\n    \"JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues.executor\": \"Run\",\r\n    \"JUnit.databaseTests in TravelBoody.executor\": \"Run\",\r\n    \"JUnit.test in TravelBoody.executor\": \"Run\",\r\n    \"JUnit.tests.databaseTests in TravelBoody.executor\": \"Run\",\r\n    \"Maven.TravelBoody [org.springframework.boot:spring-boot-maven-plugin:3.3.4:run].executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"development\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Haldo\\IdeaProjects\\TravelBuddy\\src\\main\\org\\travel\" />\r\n      <recent name=\"C:\\Users\\Haldo\\IdeaProjects\\TravelBuddy\\src\\main\" />\r\n      <recent name=\"C:\\Users\\Haldo\\IdeaProjects\\TravelBuddy\\src\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.TravelApplication\">\r\n    <configuration name=\"TravelApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.travel.TravelApplication\" />\r\n      <module name=\"TravelBoody\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.travel.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TravelBoody\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.travel.databaseTests.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"org.travel.databaseTests\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.travel.databaseTests.TripDataMongoAdapterIntegrationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"saveAndGetTripShouldReturnTheSameData\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TripDataServiceTests\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TravelBoody\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.travel.serviceTests.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"org.travel.serviceTests\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.travel.serviceTests.TripDataServiceTests\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TravelBoody\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.travel.serviceTests.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"org.travel.serviceTests\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.travel.serviceTests.TripDataServiceTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"saveUserTripDataShouldAcceptCrowdednessBoundaryValues\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"test in TravelBoody\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"TravelBoody\" />\r\n      <option name=\"TEST_OBJECT\" value=\"directory\" />\r\n      <dir value=\"$PROJECT_DIR$/src/test\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.TravelApplication\" />\r\n        <item itemvalue=\"JUnit.test in TravelBoody\" />\r\n        <item itemvalue=\"JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData\" />\r\n        <item itemvalue=\"JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues\" />\r\n        <item itemvalue=\"JUnit.TripDataServiceTests\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9d10be3e-fd36-4f5a-a41e-0ab631a7e786\" name=\"Changes\" comment=\"\" />\r\n      <created>1762476334703</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1762476334703</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"god i fucking hate git\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762784818563</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762784818563</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Brukere start\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1762886573419</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1762886573419</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Fikset pakkestrukturen for brukere branchen\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1763114487290</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1763114487290</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"god i fucking hate git\" />\r\n    <MESSAGE value=\"Brukere start\" />\r\n    <MESSAGE value=\"Fikset pakkestrukturen for brukere branchen\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Fikset pakkestrukturen for brukere branchen\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 139969ba1012643e3423e19990dec5e5e55d9966)
++++ b/.idea/workspace.xml	(date 1763571971658)
+@@ -5,24 +5,15 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24__Changes_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataMongoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataMongoAdapter.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/DTO/NotificationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/DTO/NotificationData.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Journeymaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Journeymaker.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/TripData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/TripData.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Main.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/NotificationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/NotificationAdapter.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/UserCreater.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/DatabaseConnectionTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/DatabaseConnectionTester.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/databaseTests/EnturTripDataAdapterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/databaseTests/EnturTripDataAdapterTests.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/databaseTests/TripDataMongoAdapterIntegrationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/databaseTests/TripDataMongoAdapterIntegrationTests.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/NotificationCreationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/NotificationCreationTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/org/travel/TravelApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TravelApplication.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/org/travel/frontend/index.html" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/org/travel/frontend/script.js" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/org/travel/frontend/style.css" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -52,12 +43,12 @@
+     &quot;assignee&quot;: &quot;mmbnnnbn&quot;
+   }
+ }</component>
+-  <component name="GithubPullRequestsUISettings">{
+-  &quot;selectedUrlAndAccountId&quot;: {
+-    &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,
+-    &quot;accountId&quot;: &quot;e041e7da-4a8c-492c-9dac-e6823cdd0efc&quot;
+-  }
+-}</component>
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/Haljoa/TravelBuddy.git",
++    "accountId": "739821b0-9818-4270-8fbb-120d6287f060"
++  }
++}]]></component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 4
+ }</component>
+@@ -66,41 +57,41 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.DatabaseConnectionTester.executor": "Run",
+-    "Application.Main.executor": "Run",
+-    "Application.TravelApplication.executor": "Run",
+-    "DefaultHtmlFileTemplate": "HTML File",
+-    "JUnit.All in TravelBoody.executor": "Run",
+-    "JUnit.EnturTripDataAdapterTests.executor": "Run",
+-    "JUnit.NotificationCreationTest.executor": "Run",
+-    "JUnit.TripDataControllerTests.executor": "Run",
+-    "JUnit.TripDataControllerTests.getRouteByIdShouldReturnTrip.executor": "Run",
+-    "JUnit.TripDataControllerTests.saveTripShouldReturnServerErrorWhenServiceThrowsException.executor": "Run",
+-    "JUnit.TripDataIntegrationTests.executor": "Run",
+-    "JUnit.TripDataMongoAdapterIntegrationTests.executor": "Run",
+-    "JUnit.TripDataMongoAdapterIntegrationTests.getRouteByIdShouldReturnNullIfTripDoesNotExist.executor": "Run",
+-    "JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData.executor": "Run",
+-    "JUnit.TripDataServiceTests.executor": "Run",
+-    "JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues.executor": "Run",
+-    "JUnit.databaseTests in TravelBoody.executor": "Run",
+-    "JUnit.test in TravelBoody.executor": "Run",
+-    "JUnit.tests.databaseTests in TravelBoody.executor": "Run",
+-    "Maven.TravelBoody [org.springframework.boot:spring-boot-maven-plugin:3.3.4:run].executor": "Run",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "development",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.2",
+-    "run.code.analysis.last.selected.profile": "pProject Default"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.DatabaseConnectionTester.executor&quot;: &quot;Run&quot;,
++    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
++    &quot;Application.TravelApplication.executor&quot;: &quot;Run&quot;,
++    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
++    &quot;JUnit.All in TravelBoody.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.EnturTripDataAdapterTests.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.NotificationCreationTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataControllerTests.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataControllerTests.getRouteByIdShouldReturnTrip.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataControllerTests.saveTripShouldReturnServerErrorWhenServiceThrowsException.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataIntegrationTests.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataMongoAdapterIntegrationTests.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataMongoAdapterIntegrationTests.getRouteByIdShouldReturnNullIfTripDoesNotExist.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataMongoAdapterIntegrationTests.saveAndGetTripShouldReturnTheSameData.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataServiceTests.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.TripDataServiceTests.saveUserTripDataShouldAcceptCrowdednessBoundaryValues.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.databaseTests in TravelBoody.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.test in TravelBoody.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.tests.databaseTests in TravelBoody.executor&quot;: &quot;Run&quot;,
++    &quot;Maven.TravelBoody [org.springframework.boot:spring-boot-maven-plugin:3.3.4:run].executor&quot;: &quot;Run&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/O/Documents/HIOF/Software Engineering/TravelBuddy/TravelBuddy/src/tests&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main\org\travel" />
+diff --git a/src/main/org/travel/TravelApplication.java b/src/main/resources/TravelApplication.java
+rename from src/main/org/travel/TravelApplication.java
+rename to src/main/resources/TravelApplication.java
