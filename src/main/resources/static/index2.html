@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TravelBuddy</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>🚗 TravelBuddy</h1>
+        <p class="subtitle">Find and share your travel experiences</p>
+    </header>
+
+    <main class="main-content">
+        <section class="search-section">
+            <h2>Search for your trip :)</h2>
+            <div class="example-box">
+                <p><strong>Example:</strong> Try these stops:</p>
+                <p>From: <code>NSR:StopPlace:2534</code></p>
+                <p>To: <code>NSR:StopPlace:60053</code></p>
+            </div>
+
+            <div class="form-group">
+                <label for="fromInput">From:</label>
+                <input type="text" id="fromInput" placeholder="Enter starting location...">
+            </div>
+
+            <div class="form-group">
+                <label for="toInput">To:</label>
+                <input type="text" id="toInput" placeholder="Enter destination...">
+            </div>
+
+            <button class="btn btn-primary" onclick="searchTrip()">
+                🔍 Search Trip
+            </button>
+        </section>
+
+        <section class="details-section">
+            <h3>Enter extra details about your trip</h3>
+            <div class="info-box">
+                <p>The information you provide can really help other passengers</p>
+            </div>
+
+            <div class="form-group">
+                <label for="durationInput">Total Duration (minutes):</label>
+                <input type="number" id="durationInput" placeholder="Enter duration...">
+            </div>
+
+            <div class="form-group">
+                <label for="crowdedInput">Crowdedness Level (1 to 10):</label>
+                <input type="number" id="crowdedInput" min="1" max="10" placeholder="Enter level 1-10...">
+            </div>
+
+            <div class="form-group">
+                <label for="deviationInput">Deviations:</label>
+                <input type="text" id="deviationInput" placeholder="Enter any deviations...">
+            </div>
+
+            <button class="btn btn-secondary" onclick="saveTrip()">
+                💾 Save Trip Details
+            </button>
+        </section>
+
+        <section class="results-section">
+            <h3>Result:</h3>
+            <div class="result-box">
+                <pre id="resultBox"></pre>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    let lastSearchResult = null;
+
+    async function searchTrip() {
+        const from = document.getElementById('fromInput').value;
+        const to = document.getElementById('toInput').value;
+        const url = `http://localhost:8080/api/trips/search?from=${from}&to=${to}`;
+        const response = await fetch(url);
+        lastSearchResult = await response.json();
+
+        document.getElementById('resultBox').textContent = JSON.stringify(lastSearchResult, null, 2);
+    }
+
+    async function saveTrip() {
+        if (!lastSearchResult) {
+            alert("Please search for a trip first ;)");
+            return;
+        }
+
+        const payload = {
+            routeId: lastSearchResult.routeId,
+            totalDuration: parseInt(document.getElementById('durationInput').value),
+            crowdednessLevel: parseInt(document.getElementById('crowdedInput').value),
+            deviations: document.getElementById('deviationInput').value
+        };
+
+        const response = await fetch("http://localhost:8080/api/trips/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        document.getElementById('resultBox').textContent = JSON.stringify(data, null, 2);
+    }
+</script>
+</body>
+</html>
