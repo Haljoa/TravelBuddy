@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/TravelApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TravelApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/frontend/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/frontend/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/frontend/style.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +41,12 @@
     &quot;assignee&quot;: &quot;mmbnnnbn&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Haljoa/TravelBuddy.git",
-    "accountId": "26c17351-ea5a-4fe7-9c07-1ded77b97e3f"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,
+    &quot;accountId&quot;: &quot;26c17351-ea5a-4fe7-9c07-1ded77b97e3f&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
