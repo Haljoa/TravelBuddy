@@ -8,11 +8,13 @@ import org.travel.Core.Ports.TripDataRepository;
 
 import java.util.List;
 
-//Denne klassen er service klassen for hele TripData "familien", og til databasen vår. av alle klassene i denne kjeden,
+//Denne klassen er service klassen for hele TripData "familien", og til databasen vår.
+// nå hele systemet - LITT UTDATERT DETTE HER :)
+// av alle klassene i denne kjeden,
 // fra TripData (som er hva vi her ønsker å lage objekter av, og å kunne sende til, og hente fra databasen)
 // til databasen selv, er det denne klassen man bruker når man ønsker å gjøre CRUD operasjoner.
 //man kaller ikke f.eks. en adapter, her TripDataMongoAdapter, eller en port, her TripDataRepository, direkte for
-//dette, man gjør det gjennom en service klasse som denne, som deretter sender instruksjonene videre.
+//dette (i heksagonal arkitektur altså), man gjør det gjennom en service klasse som denne, som deretter sender instruksjonene videre.
 
 //Kjeden går slik:
 //UI ->

@@ -26,7 +26,7 @@ public class EnturTripDataAdapter implements EnturTripDataPort {
             //henter dataen fra entur, uten formatering.
             String rawJson = clientPort.journeyV3Query(from, to);
 
-            //formaterer dataen på ønsket måte, og mapper den til EnturTrip, nestet i TripData.
+            //tar det entur sender oss, deres json, og mapper det til et EnturTrip objekt
             JsonNode root = mapper.readTree(rawJson);
             JsonNode tripNode = root.path("data").path("trip");
             EnturTrip enturTrip = mapper.treeToValue(tripNode, EnturTrip.class);

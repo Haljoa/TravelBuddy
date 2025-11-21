@@ -64,7 +64,7 @@ public class TripDataMongoAdapterIntegrationTests {
         assertEquals("none", result.getDeviations());
     }
 
-    //sjekker at getRouteById returnerer null, hvis en tur ikke eksisterer, og ikke noe annet tilfeldig
+    //sjekker at getRouteById returnerer null, hvis en tur ikke eksisterer
     @Test
     void getRouteByIdShouldReturnNullIfTripDoesNotExist() throws Exception {
         //arrange

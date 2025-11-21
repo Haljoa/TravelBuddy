@@ -4,7 +4,7 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//denne klassen tar imot json data fra entur, som ikke er veldig menneske-vennlig,
+//denne klassen tar imot data fra entur, som ikke er veldig menneske-vennlig,
 //og formaterer det på en måte som er mye lettere å forstå
 //den returnerer en liste med strings, hvor hver string er en linje med noe faktisk forståelig :)
 public class HumanRedableTripFormatter {

@@ -21,7 +21,8 @@ public class TripDataMongoAdapter implements TripDataRepository {
 
     //konstruktøren som tar imot DI-en fra MongoDBInjector
     public TripDataMongoAdapter (MongoDatabase database) {
-        //her finner mongoDB rett collection med data, og Java driver får klassen som den skal lage objekter av.
+        //her finner mongoDB den collectionen med data som vi ønsker den skal bruke,
+        //og Java driver får klassen som den skal lage objekter av.
         this.collection = database.getCollection("journeysTest", TripData.class);
     }
 

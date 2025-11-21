@@ -13,7 +13,7 @@ import org.travel.Core.Service.TripDataService;
 //dette er en konfigurerings-klasse som står for sammenkoblingen av ulike dependencies som må skje når appen starter.
 //Tanken med en slik klasse er at ting som adaptere blir injektert fra utsiden av kjernen, og at disse adapterne
 //kobles til portene til kjernen, dette gjør at Core kun kobles til porter, og ikke noe annet.
-//jeg tror Spring kan gjøre dette automatisk, men hvis vi gjør det slik er vi sikre på at alt kobles sammen på rett måte
+//Spring kan gjøre dette automatisk, men hvis vi gjør det slik er vi sikre på at alt kobles sammen på rett måte
 //spesielt med tanke på å opprettholde den heksagonale arkitekturen.
 @Configuration
 public class AppConfig {

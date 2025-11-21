@@ -146,7 +146,6 @@ public class TripDataControllerTests {
     @Test
     void getHumanReadableSummaryShouldReturnPlainText() throws Exception {
         //arrange
-        TripDataController controller = new TripDataController(service);
         //stubber en respons fra service klassen
         when(service.getHumanReadableSummary("a - b")).thenReturn(List.of("Line1", "Line2"));
 
