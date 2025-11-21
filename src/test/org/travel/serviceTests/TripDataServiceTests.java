@@ -167,14 +167,14 @@ public class TripDataServiceTests {
         when(repository.getRouteById("o - p")).thenReturn(null);
 
         //act
-        //sjekker at service kaster rett type exception når den kaller metoden
+        //lagrer exceptionen som kastes når service kaller metoden
         Exception exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> service.saveUserTripData("o - p", 23, 5, "none")
         );
 
         //assert
-        //sjekker at vi får rett feilmelding tilbake
+        //sjekker at det er den forventede, og korrekte, feilmeldingen
         assertEquals("You must search for a trip before you can save.", exception.getMessage());
     }
 
