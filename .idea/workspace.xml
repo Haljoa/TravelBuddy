@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/HumanRedableTripFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/HumanReadableTripFormatterTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_11_2025_15_35__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_10_24__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/serviceTests/TripDataServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +94,7 @@
       <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull">
+  <component name="RunManager" selected="Application.TravelApplication">
     <configuration name="TravelApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.travel.TravelApplication" />
       <module name="TravelBoody" />
@@ -173,8 +164,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull" />
         <item itemvalue="Application.TravelApplication" />
+        <item itemvalue="JUnit.HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull" />
         <item itemvalue="JUnit.test in TravelBoody" />
         <item itemvalue="JUnit.TripDataControllerTests" />
         <item itemvalue="JUnit.HumanReadableTripFormatterTests" />

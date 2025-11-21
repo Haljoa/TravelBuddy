@@ -167,7 +167,7 @@ public class TripDataServiceTests {
         when(repository.getRouteById("o - p")).thenReturn(null);
 
         //act
-        //tvinger kastingen av en feilmelding
+        //sjekker at service kaster rett type exception når den kaller metoden
         Exception exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> service.saveUserTripData("o - p", 23, 5, "none")
