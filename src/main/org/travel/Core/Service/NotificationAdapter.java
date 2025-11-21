@@ -2,7 +2,7 @@ package org.travel.Core.Service;
 
 import org.travel.Core.DTO.NotificationData;
 import org.travel.Core.Domain.Notification.*;
-import travel.Core.Domain.Notification.*;
+import org.travel.Core.Domain.Notification.*;
 import org.travel.Core.Ports.NotificationPort;
 
 import java.util.HashMap;

@@ -7,14 +7,7 @@
     <list default="true" id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/resources/static/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TravelApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/TravelApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/EnturTripDataAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataMongoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Adapters/TripDataMongoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/DTO/TripUserInputDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/DTO/TripUserInputDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/HumanRedableTripFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/HumanRedableTripFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Notification/CommonTripDeviationNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Domain/Notification/CommonTripDeviationNotification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Core/Service/TripDataService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/org/travel/Database/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/org/travel/Database/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/org/travel/controllerTests/TripDataControllerTests.java" afterDir="false" />
@@ -28,8 +21,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -41,6 +32,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -53,7 +45,7 @@
     &quot;url&quot;: &quot;https://github.com/Haljoa/TravelBuddy.git&quot;,
     &quot;accountId&quot;: &quot;26c17351-ea5a-4fe7-9c07-1ded77b97e3f&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
@@ -69,6 +61,7 @@
   "keyToString": {
     "Application.DatabaseConnectionTester.executor": "Run",
     "Application.TravelApplication.executor": "Run",
+    "JUnit.travel in TravelBoody.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -117,94 +110,22 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main\org\travel" />
-      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src\main" />
-      <recent name="C:\Users\Haldo\IdeaProjects\TravelBuddy\src" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.test in TravelBoody">
-    <configuration name="TravelApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.travel.TravelApplication" />
-      <module name="TravelBoody" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.travel.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TravelBoody" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.travel.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.travel.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="org.travel.serviceTests.HumanReadableTripFormatterTests" />
-      <option name="METHOD_NAME" value="toHumanReadableReturnsMessageWhenReceivedDataIsNull" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TripDataControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TravelBoody" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.travel.controllerTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.travel.controllerTests" />
-      <option name="MAIN_CLASS_NAME" value="org.travel.controllerTests.TripDataControllerTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TripDataControllerTests.getHumanReadableSummaryShouldReturnPlainText" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="TravelBoody" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.travel.controllerTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.travel.controllerTests" />
-      <option name="MAIN_CLASS_NAME" value="org.travel.controllerTests.TripDataControllerTests" />
-      <option name="METHOD_NAME" value="getHumanReadableSummaryShouldReturnPlainText" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="test in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+}]]></component>
+  <component name="RunManager">
+    <configuration name="travel in TravelBoody" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TravelBoody" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test" />
+      <dir value="$PROJECT_DIR$/src/test/org/travel" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.test in TravelBoody" />
-        <item itemvalue="JUnit.TripDataControllerTests.getHumanReadableSummaryShouldReturnPlainText" />
-        <item itemvalue="Application.TravelApplication" />
-        <item itemvalue="JUnit.HumanReadableTripFormatterTests.toHumanReadableReturnsMessageWhenReceivedDataIsNull" />
-        <item itemvalue="JUnit.TripDataControllerTests" />
+        <item itemvalue="JUnit.travel in TravelBoody" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="9d10be3e-fd36-4f5a-a41e-0ab631a7e786" name="Changes" comment="" />
@@ -213,31 +134,15 @@
       <option name="presentableId" value="Default" />
       <updated>1762476334703</updated>
     </task>
-    <task id="LOCAL-00001" summary="god i fucking hate git">
+    <task id="LOCAL-00001" summary="bro im so hungry i just wanna go home and eat a pizzer">
       <option name="closed" value="true" />
-      <created>1762784818563</created>
+      <created>1763745883587</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1762784818563</updated>
+      <updated>1763745883587</updated>
     </task>
-    <task id="LOCAL-00002" summary="Brukere start">
-      <option name="closed" value="true" />
-      <created>1762886573419</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1762886573419</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Fikset pakkestrukturen for brukere branchen">
-      <option name="closed" value="true" />
-      <created>1763114487290</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1763114487290</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -252,9 +157,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="god i fucking hate git" />
-    <MESSAGE value="Brukere start" />
-    <MESSAGE value="Fikset pakkestrukturen for brukere branchen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fikset pakkestrukturen for brukere branchen" />
+    <MESSAGE value="bro im so hungry i just wanna go home and eat a pizzer" />
+    <option name="LAST_COMMIT_MESSAGE" value="bro im so hungry i just wanna go home and eat a pizzer" />
   </component>
 </project>
