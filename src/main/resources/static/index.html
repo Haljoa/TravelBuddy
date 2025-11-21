@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TravelBuddy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>TravelBuddy</h1>
+        <p class="subtitle">The single greatest app ever made by humankind</p>
+    </header>
+
+    <main class="main-content">
+        <section class="search-section">
+            <h2>Search for your trip :)</h2>
+            <div class="example-box">
+                <p><strong>Example:</strong> Try these stops:</p>
+                <p>From: <code>NSR:StopPlace:59872</code></p>
+                <p>To: <code>NSR:StopPlace:58381</code></p>
+            </div>
+
+            <div class="form-group">
+                <label for="fromInput">From:</label>
+                <input type="text" id="fromInput" placeholder="Enter starting location...">
+            </div>
+
+            <div class="form-group">
+                <label for="toInput">To:</label>
+                <input type="text" id="toInput" placeholder="Enter destination...">
+            </div>
+
+            <button class="btn btn-primary" onclick="searchTrip()">
+                🔍 Search Trip
+            </button>
+        </section>
+
+        <section class="details-section">
+            <h3>Enter extra details about your trip</h3>
+            <div class="info-box">
+                <p>The information you provide can really help other passengers</p>
+            </div>
+
+            <div class="form-group">
+                <label for="durationInput">Total Duration (minutes):</label>
+                <input type="number" id="durationInput" placeholder="Enter duration...">
+            </div>
+
+            <div class="form-group">
+                <label for="crowdedInput">Crowdedness Level (1 to 10):</label>
+                <input type="number" id="crowdedInput" min="1" max="10" placeholder="Enter level 1-10...">
+            </div>
+
+            <div class="form-group">
+                <label for="deviationInput">Deviations:</label>
+                <input type="text" id="deviationInput" placeholder="Enter any deviations...">
+            </div>
+
+            <button class="btn btn-secondary" onclick="saveTrip()">
+                💾 Save Trip Details
+            </button>
+        </section>
+
+        <section class="results-section">
+            <h3>Result:</h3>
+            <div class="result-box">
+                <pre id="resultBox"></pre>
+            </div>
+        </section>
+    </main>
+</div>
+
+    <script>
+        let lastSearchResult = null;
+
+        async function searchTrip() {
+            const from = document.getElementById('fromInput').value;
+            const to = document.getElementById('toInput').value;
+
+            const searchUrl = `http://localhost:8080/api/trips/search?from=${from}&to=${to}`;
+            const response = await fetch(searchUrl);
+            lastSearchResult = await response.json();
+
+            const summaryUrl = `http://localhost:8080/api/trips/${lastSearchResult.routeId}/summary/text`;
+            const summaryResponse = await fetch(summaryUrl);
+            const summaryText = await summaryResponse.text();
+
+            document.getElementById('resultBox').innerText = summaryText;
+        }
+    </script>
+    <script>
+        async function saveTrip() {
+            if (!lastSearchResult) {
+                alert("Please search for a trip first ;)");
+                return;
+            }
+
+            const payload = {
+                routeId: lastSearchResult.routeId,
+                totalDuration: parseInt(document.getElementById('durationInput').value),
+                crowdednessLevel: parseInt(document.getElementById('crowdedInput').value),
+                deviations: document.getElementById('deviationInput').value
+            };
+
+            await fetch("http://localhost:8080/api/trips/save", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)});
+
+            const summaryUrl = `http://localhost:8080/api/trips/${payload.routeId}/summary/text`;
+            const summaryResponse = await fetch(summaryUrl);
+            const summaryText = await summaryResponse.text();
+
+            document.getElementById('resultBox').innerText = summaryText;
+        }
+    </script>
+</body>
+</html>
