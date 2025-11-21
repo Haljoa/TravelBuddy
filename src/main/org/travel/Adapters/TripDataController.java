@@ -1,9 +1,6 @@
 package org.travel.Adapters;
 
-import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.travel.Core.DTO.TripUserInputDTO;
 import org.travel.Core.Domain.TripData;
 import org.travel.Core.Service.TripDataService;
 
@@ -20,9 +17,6 @@ public class TripDataController {
         this.tripDataService = tripDataService;
     }
 
-    //HTTP-metoder
-
-    //GET-requests
     @GetMapping
     public List<TripData> getAllTrips() {
         return tripDataService.getAllTrips();
@@ -33,32 +27,9 @@ public class TripDataController {
         return tripDataService.getRouteById(routeId);
     }
 
-    @GetMapping("/search")
-    public TripData getOrFetchTrip(@RequestParam String from, @RequestParam String to) {
-        return tripDataService.getOrFetchTrip(from, to);
-    }
-
-    //get endpoint for resultatet av søket, formatert på en menneske vennlig måte
-    @GetMapping(value = "/{routeId}/summary/text", produces = "text/plain")
-    public String getHumanReadableData(@PathVariable String routeId) {
-        return String.join("\n", tripDataService.getHumanReadableSummary(routeId));
-    }
-
-    //POST-requests
     @PostMapping
     public String createTrip(@RequestBody TripData tripData) {
         tripDataService.saveTripData(tripData);
         return "Trip lagret: " + tripData.getRouteId();
-    }
-
-    @PostMapping("/save")
-    public ResponseEntity<TripData> saveTrip(@Valid @RequestBody TripUserInputDTO dto) {
-        TripData saved = tripDataService.saveUserTripData(
-                dto.routeId,
-                dto.totalDuration,
-                dto.crowdednessLevel,
-                dto.deviations
-        );
-        return ResponseEntity.ok(saved);
     }
 }

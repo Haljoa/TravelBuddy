@@ -65,7 +65,7 @@ public class TripDataControllerTests {
         //act og assert
         //simulerer post request og sjekker at json er korrekt
         mvc.perform(post("/api/trips/save").contentType(MediaType.APPLICATION_JSON)
-                .content(json)).andExpect(status().isOk()).andExpect(jsonPath("$.routeId").value("a"))
+                        .content(json)).andExpect(status().isOk()).andExpect(jsonPath("$.routeId").value("a"))
                 .andExpect(jsonPath("$.totalRouteDuration").value(20))
                 .andExpect(jsonPath("$.crowdednessLevel").value(3))
                 .andExpect(jsonPath("$.deviations").value("traffic"));
@@ -97,7 +97,7 @@ public class TripDataControllerTests {
         //act og assert
         //spring bør ikke godta denne payloaden
         mvc.perform(post("/api/trips/save").contentType(MediaType.APPLICATION_JSON)
-                .content(json))
+                        .content(json))
                 .andExpect(status().isBadRequest());
     }
 
