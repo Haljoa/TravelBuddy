@@ -15,7 +15,7 @@ public interface TripDataRepository {
     //dette blir CRUD operasjoner til og fra databasen.
 
     //for lagring av ekstra data om ruten
-    void saveTripData(TripData tripData);
+    TripData saveTripData(TripData tripData);
     //for å hente data om én rute basert på Iden dens
     TripData getRouteById(String routeId);
     //henting av all data om alle ruter

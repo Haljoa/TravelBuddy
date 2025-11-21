@@ -14,8 +14,8 @@ import java.util.HashMap;
 
 public class NotificationAdapter implements NotificationPort {
     @Override
-    public Notifiaction create(NotificationType Type, NotificationData data) {
-        Notifiaction NewNotification = UserNotification(data.notificationID);
+    public Notification create(NotificationType Type, NotificationData data) {
+        Notification NewNotification = UserNotification(data.notificationID);
         String description = NewNotification.getDescription();
             switch(Type){
                 case DELAY:
@@ -33,7 +33,7 @@ public class NotificationAdapter implements NotificationPort {
                 case ACCESSIBILITY:
                     return new AccessibilityNotification(description,data.notificationID, data.stopID);
                 case COMMONTRIPDEVIATION:
-                    return new CommonTripDeviationNotification(description,data.notificationID, data.UserID, data.routeID);
+                    return new CommonTripDeviationNotification(description,data.notificationID, data.routeID, data.deviations, data.UserID);
 
                 default:
                     throw new IllegalArgumentException("Unknown notification type" + Type);
@@ -41,7 +41,7 @@ public class NotificationAdapter implements NotificationPort {
             }
     }
 
-    private Notifiaction UserNotification(int notificationID){
+    private Notification UserNotification(int notificationID){
         HashMap<Integer, String> NotificationMap = new HashMap<>();
         NotificationMap.put(1, "Forsinkelse");
         NotificationMap.put(2, "Avvik på stasjon");
@@ -55,7 +55,7 @@ public class NotificationAdapter implements NotificationPort {
 
 
         String description = NotificationMap.getOrDefault(notificationID, "error");
-        return new Notifiaction(description, notificationID);
+        return new Notification(description, notificationID);
 
     }
 

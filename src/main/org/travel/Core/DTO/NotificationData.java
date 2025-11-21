@@ -1,5 +1,4 @@
 package org.travel.Core.DTO;
-
 //Notification DTO
 
 public class NotificationData {

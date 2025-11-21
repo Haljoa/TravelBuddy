@@ -21,7 +21,8 @@ public class TripDataMongoAdapter implements TripDataRepository {
 
     //konstruktøren som tar imot DI-en fra MongoDBInjector
     public TripDataMongoAdapter (MongoDatabase database) {
-        //her finner mongoDB rett collection med data, og Java driver får klassen som den skal lage objekter av.
+        //her finner mongoDB den collectionen med data som vi ønsker den skal bruke,
+        //og Java driver får klassen som den skal lage objekter av.
         this.collection = database.getCollection("journeysTest", TripData.class);
     }
 
@@ -29,7 +30,7 @@ public class TripDataMongoAdapter implements TripDataRepository {
     //alt dette er funnet på MongoDB Java Driver sine offisielle docs sider under CRUD Operations:
     //https://www.mongodb.com/docs/drivers/java/sync/current/
     @Override
-    public void saveTripData(TripData tripData) {
+    public TripData saveTripData(TripData tripData) {
         //bruker et filter til å finne samme routeId (_id) i databasen som vi sender med som et TripData objekt
         Bson idMatch = Filters.eq("_id", tripData.getRouteId());
         //bytter ut gammel info om ruten ved å overskrive den med ny data, eller lagre ny data hvis ingen finnes
@@ -39,6 +40,7 @@ public class TripDataMongoAdapter implements TripDataRepository {
         } catch (MongoException exception) {//MongoException tar hånd om alle feil relatert til databasen
             System.err.println("Something went wrong. " + exception.getMessage());
         }
+        return tripData;
     }
 
     @Override
