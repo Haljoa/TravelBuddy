@@ -167,14 +167,14 @@ public class TripDataServiceTests {
         when(repository.getRouteById("o - p")).thenReturn(null);
 
         //act
-        //tvinger kastingen av en feilmelding
+        //lagrer exceptionen som kastes når service kaller metoden
         Exception exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> service.saveUserTripData("o - p", 23, 5, "none")
         );
 
         //assert
-        //sjekker at vi får rett feilmelding tilbake
+        //sjekker at det er den forventede, og korrekte, feilmeldingen
         assertEquals("You must search for a trip before you can save.", exception.getMessage());
     }
 
@@ -196,6 +196,41 @@ public class TripDataServiceTests {
         assertEquals(10, higher.getCrowdednessLevel());
         //sjekker at porten fikk kallet begge gangene
         verify(repository, times(2)).saveTripData(existingTrip);
+    }
+
+    //sjekker at getHumanReadableSummary returnerer data fra formatereren
+    @Test
+    void getHumanReadableSummaryShouldReturnDataFromFormatter() {
+        //arrange
+        TripDataRepository repo = mock(TripDataRepository.class);
+        EnturTripDataPort entur = mock(EnturTripDataPort.class);
+        TripDataService tripDataService = new TripDataService(repo, entur);
+        TripData mockTrip = new TripData();
+        mockTrip.setTotalRouteDuration(5);
+        mockTrip.setCrowdednessLevel(5);
+        mockTrip.setDeviations("none");
+        //stubber en respons
+        when(repo.getRouteById("a - b")).thenReturn(mockTrip);
+
+        //act
+        List<String> result = tripDataService.getHumanReadableSummary("a - b");
+
+        //assert
+        assertNotNull(result);
+        assertTrue(result.size() > 0);
+    }
+
+    @Test
+    void getHumanReadableSummaryThrowsExceptionWhenTripIsMissing() {
+        //arrange
+        TripDataRepository repo = mock(TripDataRepository.class);
+        EnturTripDataPort entur = mock(EnturTripDataPort.class);
+        TripDataService tripDataService = new TripDataService(repo, entur);
+        //stubber en respons
+        when(repo.getRouteById("a")).thenReturn(null);
+
+        //act og assert
+        assertThrows(IllegalArgumentException.class, () -> tripDataService.getHumanReadableSummary("a"));
     }
 
     //Tester edge-cases under her.

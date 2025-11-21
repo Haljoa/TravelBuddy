@@ -18,8 +18,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(TripDataController.class)
 @Import(GlobalExceptionHandler.class)
@@ -142,5 +141,18 @@ public class TripDataControllerTests {
                 .content(invalidJson)).andExpect(status().isBadRequest());
         //sjekker at service klassen ikke fikk et kall
         verify(service, never()).saveUserTripData(anyString(), anyInt(), anyInt(), anyString());
+    }
+
+    @Test
+    void getHumanReadableSummaryShouldReturnPlainText() throws Exception {
+        //arrange
+        //stubber en respons fra service klassen
+        when(service.getHumanReadableSummary("a - b")).thenReturn(List.of("Line1", "Line2"));
+
+        //act og assert
+        mvc.perform(get("/api/trips/a - b/summary/text"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith("text/plain"))
+                .andExpect(content().string("Line1\nLine2"));
     }
 }
